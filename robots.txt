@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /application/
+Disallow: /backups/
+Disallow: /modules/
+Disallow: /system/
+Disallow: /database/
+Disallow: /install/
+Sitemap: sitemap.xml

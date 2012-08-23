@@ -1,0 +1,75 @@
+/* CSS Document */
+table.install {
+	width:700px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:3px;
+	font-size:13px;
+}
+table.install td {
+}
+table.tbl_process {
+}
+table.tbl_install {
+	width:570px;
+}
+table.tbl_install td.tbl_install_TT {
+	color:#00427A;
+	padding:5px 5px 5px 5px;
+	font-weight:bolder;
+}
+table.tbl_install td.tbl_install_TTT {
+	color:#fff;
+	background:#00427A;
+	padding:5px 5px 5px 5px;
+	font-weight:bolder;
+}
+table.tbl_install td.tbl_install_boder {
+	border:1px solid #00427A;
+	background-color:#EFF9FE;
+}
+table.tbl_require {
+	border-collapse:collapse;
+}
+table.tbl_require th {
+	border:1px solid #00427A;
+	color:#fff;
+	background:#00427A;
+	padding:5px 5px 5px 5px;
+	font-weight:bolder;
+}
+table.tbl_require td {
+	border:1px solid #00427A;
+	padding-left:10px;
+	background-color:#EFF9FE;
+}
+input.button {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	padding:1px;
+	border-color:#ED6502 #A04300 #A04300 #ED6502;
+	border-style:solid;
+	border-width:1px;
+	color:#FFFFFF;
+	cursor:pointer;
+	background-color:#E1E8EE;
+	background-image:url('pics/bg_button.gif');
+}
+input.button:hover {
+	background-color:#F77C16;
+	background:url('pics/bg_button_over.gif');
+	border-color:#F77C16;
+	color:#FFF;
+}
+table.tbl_dbcon th {
+	border:1px solid #00427A;
+	color:#fff;
+	background:#00427A;
+	padding:5px 5px 5px 5px;
+	font-weight:bolder;
+}
+table.tbl_dbcon td {
+	border:1px solid #00427A;
+	padding-left:10px;
+}
+label.error {margin-left: 10px; width: auto; display: inline; color: red;}

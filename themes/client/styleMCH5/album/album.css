@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* Album */
+table.album {margin:5px;}
+table.album td.album_top {text-align:left; font-weight:normal; padding-top:10px; vertical-align:top;}
+	div.album_top_TT {float:left; width:80%;}
+	div.album_top_btn {float:left; vertical-align:top;}
+table.album td.album_middle {padding-top:10px;}
+		div.album_middle_Co {}
+			/* Album Item */
+			div.album_item {float:left; width:180px; height:250px;}
+				div.album_item_T {background:url(pics/bg_album_item_top.png) no-repeat bottom center; height:13px; width:155px;}
+				div.album_item_M {background:url(pics/bg_album_item_middle.png) repeat-y top center; width:155px; text-align:center;}
+				div.album_item_M div.album_image {}
+					div.album_image img.album_img {margin:3px; background-color:#FFF; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
+			div.album_item_M a {height:auto; text-align:center;}
+			div.album_item_M div.album_item_TT {line-height:20px;}
+			div.album_item_M div.album_item_view {line-height:20px;}
+			div.album_item_B {background:url(pics/bg_album_item_bottom.png) no-repeat top center; height:20px; font-size:12px;
+								text-align:center; line-height:18px; width:155px;}
+table.album td.album_pagination {text-align:right;}			
+table.album td.album_hr {text-align:left;}
+table.album td.album_bottom {text-align:left;}
+		
+/* Album Detail */
+table.album_detail {border:#999 0px solid; padding:3px;}
+table.album_detail td.album_btn {text-align:right; padding:5px;}
+table.album_detail td.album_detail_T {font-weight:bolder; padding-right:5px; line-height:30px; color:#0673B6; font-size:110%;}
+table.album_detail td.album_detail_M {}
+table.album_detail td.album_detail_M div.album_detail_Co {padding:10px; text-align:left; }
+table.album_detail td.album_detail_M div.img_album {padding:3px; margin-bottom:10px;}
+table.album_detail td.album_detail_M img.img_album {border:1px solid #999999; padding:3px; -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; -moz-box-shadow: 1px 1px 5px #969696; -webkit-box-shadow: 1px 1px 5px #969696; box-shadow: 1px 1px 5px #999;} 
+		table.album_detail_des {border:#6cb4ec 1px solid; border-collapse:collapse;}
+		table.album_detail_des td {padding:3px 10px 3px 5px; text-align:left; border:#6cb4ec 1px dotted;}
+		table.album_detail_des th {padding:10px; text-align:left; border:#6cb4ec 1px dotted;}
+		table.album_detail_comment {}
+		table.album_detail_show_comment {}
+table.album_detail td.album_detail_B {}
+	
+/* Album Create */	
+table.album_create{ }
+table.album_create td.album_create_T {text-align:left; font-weight:bolder; padding-top:10px; padding-bottom:10px;}
+table.album_create td.album_create_M {}
+		table.album_create_M_Co{}
+table.album_create td.album_create_B {}

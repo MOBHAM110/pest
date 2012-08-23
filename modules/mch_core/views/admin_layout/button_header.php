@@ -1,0 +1,2 @@
+<button type="button" name="btn_close" class="button close" onclick="javascript:close_refresh();"><span><?php echo Kohana::lang('global_lang.btn_close')?></span></button>
+<button type="button" name="btn_update" class="button update" onclick="javascript:save();"><span><?php echo Kohana::lang('global_lang.btn_update')?></span></button>

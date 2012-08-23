@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* BSS */
+table.bbs {margin:5px;}
+table.bbs td.bbs_top {text-align:left; padding-top:10px; padding-bottom:10px;}
+table.bbs td.bbs_btn {padding-top:5px; padding-bottom:5px; text-align:right;}
+table.bbs td.bbs_middle {padding-top:5px; padding-bottom:5px; padding-right:10px;}
+		table.bbs_middle_Co{}
+		/* BBS Item */
+		table.bbs_item {padding:3px;}
+		table.bbs_item td {padding:3px;}
+		table.bbs_item th {padding:3px;}
+		table.bbs_item td.bbs_item_TT {font-weight:bolder; color:#4ab227; font-size:110%;}
+		table.bbs_item td.bbs_item_Date {border-bottom:1px dotted #4ab227;}
+		table.bbs_item td.bbs_item_Des {text-align:left; line-height:20px;}
+		table.bbs_item td.bbs_item_File {text-align:left;}
+		table.bbs_item td.bbs_item_Pass {padding-left:20px; text-align:left;}
+table.bbs td.bbs_pagination {text-align:right;}
+table.bbs td.bbs_bottom {text-align:right;}
+
+/* BBS List */
+table.bbs_list {padding:1px; line-height:20px;}
+table.bbs_list a {font-weight:normal;}
+table.bbs_list td {padding:5px; border-bottom:1px dotted #CCC;}
+table.bbs_list td.bbs_list_search {background-color:#EDEDED;}
+table.bbs_list tr:hover {padding-left:10px; background-color:#FFFEF2; cursor:pointer;}
+table.bbs_list th {background:url(pics/bg_bbs_list_th.png) repeat-x left top;padding-top:5px; 
+					text-align:center; text-transform:capitalize; border-bottom:1px solid #808285;}
