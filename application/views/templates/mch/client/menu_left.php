@@ -15,3 +15,10 @@
 </tr>
 <tr><td class="menu_left_B"></td></tr>
 </table>
+<script> 
+$(document).ready(function(){ 
+	$("ul.sf-menu_L").superfish({ 
+		pathClass:  'current' 
+	}); 
+}); 
+</script>
