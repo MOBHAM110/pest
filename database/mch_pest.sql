@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 24, 2012 at 03:46 PM
+-- Generation Time: Aug 24, 2012 at 10:49 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -51,7 +51,7 @@ INSERT INTO `admin` (`admin_id`, `user_id`, `admin_status_online`, `admin_login_
 --
 
 CREATE TABLE IF NOT EXISTS `banner` (
-  `banner_id` tinyint(11) NOT NULL AUTO_INCREMENT,
+  `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_file` text,
   `file_type_id` int(11) NOT NULL,
   `banner_link` text,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `banner` (
   `banner_height` int(5) NOT NULL,
   `banner_alt` text,
   PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=81 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -84,62 +84,7 @@ CREATE TABLE IF NOT EXISTS `bbs` (
   `bbs_level` int(11) DEFAULT '0',
   `bbs_sort_order` int(11) DEFAULT NULL,
   PRIMARY KEY (`bbs_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=52 ;
-
---
--- Dumping data for table `bbs`
---
-
-INSERT INTO `bbs` (`bbs_id`, `bbs_password`, `bbs_count`, `bbs_download`, `bbs_author`, `bbs_date_created`, `bbs_date_modified`, `bbs_order`, `bbs_status`, `bbs_page_id`, `bbs_left`, `bbs_right`, `bbs_level`, `bbs_sort_order`) VALUES
-(1, '', 4, 0, 'superadmin', 1345533835, NULL, 0, 1, 163, 1, 8, 1, 0),
-(4, '', 15, 0, 'superadmin', 1345627649, 1345630214, 0, 1, 165, 6, 7, 2, 0),
-(5, '', 5, 0, 'superadmin', 1345627669, 1345627706, 0, 1, 163, 4, 5, 2, 0),
-(6, '', 9, 0, 'superadmin', 1345630264, NULL, 0, 1, 166, 2, 3, 2, 0),
-(7, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(8, NULL, 2, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(9, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(10, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(11, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(12, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(13, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(14, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(15, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(16, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(17, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(18, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(19, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(20, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(21, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(22, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(23, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(24, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(25, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(26, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(27, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(28, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(29, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(30, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(31, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(32, NULL, 3, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(33, NULL, 2, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(34, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(35, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(36, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(37, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(38, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(39, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(40, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(41, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(42, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(43, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(44, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(45, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(46, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(47, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(48, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(49, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(50, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(51, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -153,16 +98,6 @@ CREATE TABLE IF NOT EXISTS `bbs_content` (
   `bbs_title` varchar(200) NOT NULL,
   `bbs_content` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `bbs_content`
---
-
-INSERT INTO `bbs_content` (`bbs_id`, `languages_id`, `bbs_title`, `bbs_content`) VALUES
-(1, 1, 'a', 'a'),
-(4, 1, 'News', '<span style="color: rgb(102, 102, 102); font-family: Arial, Helvetica, sans-serif; ">News</span>'),
-(5, 1, 'FAQs', 'FAQs'),
-(6, 1, 'Blog', 'Blog');
 
 -- --------------------------------------------------------
 
