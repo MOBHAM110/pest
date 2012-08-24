@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 24, 2012 at 10:49 PM
+-- Generation Time: Aug 24, 2012 at 11:29 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -454,9 +454,9 @@ INSERT INTO `menu_categories` (`menu_categories_id`, `menu_categories_image`, `m
 (35, '', 'admin_account', 34, NULL, NULL, NULL, 1, 34, NULL, 2, '34|35|', 3, 4),
 (36, '', 'admin_customer', 34, NULL, NULL, NULL, 1, 34, NULL, 2, '34|36|', 5, 6),
 (37, '', 'admin_layout', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '37|', 8, 9),
-(38, '', '', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '38|', 10, 15),
-(39, '', 'admin_page/view/mptt', 38, NULL, NULL, NULL, 1, 38, NULL, 2, '38|39|', 11, 12),
-(40, '', 'admin_page/view/list', 38, NULL, NULL, NULL, 1, 38, NULL, 2, '38|40|', 13, 14),
+(38, '', 'admin_page/view/mptt', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '38|', 10, 15),
+(39, '', 'admin_page/view/mptt', 38, NULL, NULL, NULL, 0, 38, NULL, 2, '38|39|', 11, 12),
+(40, '', 'admin_page/view/list', 38, NULL, NULL, NULL, 0, 38, NULL, 2, '38|40|', 13, 14),
 (41, '', 'admin_banner', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '41|', 16, 17),
 (42, '', '', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '42|', 18, 27),
 (43, '', 'admin_language', 42, NULL, NULL, NULL, 0, 42, NULL, 2, '42|43|', 25, 26),
@@ -822,8 +822,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('6c32cb41c8fbedca8eaac991742e3b61', 1345772349, 'c2Vzc2lvbl9pZHxzOjMyOiI2YzMyY2I0MWM4ZmJlZGNhOGVhYWM5OTE3NDJlM2I2MSI7dG90YWxfaGl0c3xpOjE4MDtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMSAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMS4wLjExODAuODMgU2FmYXJpLzUzNy4xIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTc3MjM0NztzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MTE6ImJicy9waWQvMTY2IjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjc6InRrYWRtaW4iO3M6NzoiY3VycmVudCI7czoxMzoiYWRtaW5fYWNjb3VudCI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9'),
-('f1f3e71d72b9a2c62a549662597b1b03', 1345702757, 'c2Vzc2lvbl9pZHxzOjMyOiJmMWYzZTcxZDcyYjlhMmM2MmE1NDk2NjI1OTdiMWIwMyI7dG90YWxfaGl0c3xpOjE7X2tmX2ZsYXNoX3xhOjA6e311c2VyX2FnZW50fHM6MTE4OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNS4xMiAoS0hUTUwsIGxpa2UgR2Vja28pIE1heHRob24vMy40LjIuMzAwMCBDaHJvbWUvMTguMC45NjYuMCBTYWZhcmkvNTM1LjEyIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTcwMjc1NDtzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MjI6Imh0dHA6Ly9sb2NhbGhvc3QvcGVzdC8iO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9');
+('0e3228ba838fb2edcf1e175b75387320', 1345822142, 'c2Vzc2lvbl9pZHxzOjMyOiIwZTMyMjhiYTgzOGZiMmVkY2YxZTE3NWI3NTM4NzMyMCI7dG90YWxfaGl0c3xpOjIyO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44MyBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzQ1ODIyMTM1O3Nlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjE5OiJhZG1pbl9tZW51X2NhdGVnb3J5IjtzOjc6ImN1cnJlbnQiO3M6MjA6ImFkbWluX3BhZ2Uvdmlldy9tcHR0Ijt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO31zZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MjI6Imh0dHA6Ly9sb2NhbGhvc3QvcGVzdC8iO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9'),
+('6c32cb41c8fbedca8eaac991742e3b61', 1345772349, 'c2Vzc2lvbl9pZHxzOjMyOiI2YzMyY2I0MWM4ZmJlZGNhOGVhYWM5OTE3NDJlM2I2MSI7dG90YWxfaGl0c3xpOjE4MDtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMSAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMS4wLjExODAuODMgU2FmYXJpLzUzNy4xIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTc3MjM0NztzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MTE6ImJicy9waWQvMTY2IjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjc6InRrYWRtaW4iO3M6NzoiY3VycmVudCI7czoxMzoiYWRtaW5fYWNjb3VudCI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9');
 
 -- --------------------------------------------------------
 
@@ -958,7 +958,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_pass`, `user_email`, `user_level`, `user_role`, `user_status`, `user_reg_date`) VALUES
 (1, 'superadmin', 'e10adc3949ba59abbe56e057f20f883e', 'leo@techknowledge.vn', 1, '0', 1, 0),
-(2, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'lina.techknowledge@gmail.com', 2, '1', 1, NULL);
+(2, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'leo.techknowledge@gmail.com', 2, '1', 1, NULL);
 
 -- --------------------------------------------------------
 
