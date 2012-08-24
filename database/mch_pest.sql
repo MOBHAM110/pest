@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 23, 2012 at 06:07 PM
+-- Generation Time: Aug 24, 2012 at 03:46 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -248,7 +248,7 @@ INSERT INTO `configuration` (`configuration_id`, `configuration_title`, `configu
 (15, 'Format Short Date', 'FORMAT_SHORT_DATE', 'm/d/Y', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (16, 'Format Long Date', 'FORMAT_LONG_DATE', 'F j, Y, g:i a', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (17, 'Admin Theme', 'ADMIN_THEME', '', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
-(18, 'Client Theme', 'CLIENT_THEME', 'styleMCH2', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
+(18, 'Client Theme', 'CLIENT_THEME', 'styleMCH1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (19, 'Default Status Register', 'DEF_SREG', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (20, 'Home Num Row', 'HOME_NUM_ROW', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (21, 'Home Num Column', 'HOME_NUM_COL', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
@@ -270,7 +270,7 @@ INSERT INTO `configuration` (`configuration_id`, `configuration_title`, `configu
 (37, 'Max Height Banner Admin List', 'MAX_HEIGHT_BANNER_ADMIN_LIST', '60', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (38, 'Enable Comment', 'ENABLE_COMMENT', '1', '1:Enable, 0:Disable', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (39, 'Banner Center', 'BANNER_CENTER', 'order', '', 0, NULL, NULL, '2012-04-12 00:00:00', NULL, NULL),
-(40, 'Enable Akcomp', 'ENABLE_AKCOMP', '0', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL);
+(40, 'Enable Akcomp', 'ENABLE_AKCOMP', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -726,23 +726,23 @@ CREATE TABLE IF NOT EXISTS `page_layout` (
   `center_bottom_banner` varchar(200) DEFAULT NULL,
   `center_banner_order` tinyint(1) NOT NULL DEFAULT '2',
   `content_center_order` tinyint(1) NOT NULL DEFAULT '1',
-  `top_menu` varchar(200) NOT NULL,
+  `top_menu` text NOT NULL,
   `top_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
-  `center_menu` varchar(200) NOT NULL,
+  `center_menu` text NOT NULL,
   `center_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
   `top_banner` varchar(200) DEFAULT NULL,
   `top_T_banner` varchar(255) DEFAULT NULL,
   `top_B_banner` varchar(255) DEFAULT NULL,
   `top_banner_order` tinyint(1) NOT NULL DEFAULT '2',
   `center_menu_order` tinyint(11) NOT NULL DEFAULT '1',
-  `left_menu` varchar(200) NOT NULL,
+  `left_menu` text NOT NULL,
   `left_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
   `left_banner` varchar(200) DEFAULT NULL,
   `left_T_banner` varchar(255) DEFAULT NULL,
   `left_B_banner` varchar(255) DEFAULT NULL,
   `left_banner_order` tinyint(1) NOT NULL DEFAULT '2',
   `left_menu_order` tinyint(1) NOT NULL DEFAULT '1',
-  `right_menu` varchar(200) NOT NULL,
+  `right_menu` text NOT NULL,
   `right_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
   `right_banner` varchar(200) DEFAULT NULL,
   `right_T_banner` varchar(255) DEFAULT NULL,
@@ -750,7 +750,7 @@ CREATE TABLE IF NOT EXISTS `page_layout` (
   `right_banner_order` tinyint(1) NOT NULL DEFAULT '2',
   `right_menu_order` tinyint(1) NOT NULL DEFAULT '1',
   `bottom_banner` varchar(200) DEFAULT NULL,
-  `bottom_menu` varchar(200) NOT NULL,
+  `bottom_menu` text NOT NULL,
   `bottom_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
   `left_outside_banner` varchar(200) DEFAULT NULL,
   `right_outside_banner` varchar(200) DEFAULT NULL,
@@ -887,8 +887,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('238723c82bd79962f63586d81867dc70', 1345631488, 'c2Vzc2lvbl9pZHxzOjMyOiIyMzg3MjNjODJiZDc5OTYyZjYzNTg2ZDgxODY3ZGM3MCI7dG90YWxfaGl0c3xpOjIxNTtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMSAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMS4wLjExODAuNzkgU2FmYXJpLzUzNy4xIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTYzMTQ4ODtzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MTE6ImJicy9waWQvMTY1IjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjEzOiJhZG1pbl9hY2NvdW50IjtzOjc6ImN1cnJlbnQiO3M6MTI6ImFkbWluX2Jhbm5lciI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9c2Vzc19zZWFyY2hfYmJzfGE6Mzp7czo3OiJkaXNwbGF5IjtzOjA6IiI7czo3OiJrZXl3b3JkIjtzOjA6IiI7czo4OiJzZWxfdHlwZSI7czowOiIiO30='),
-('6c32cb41c8fbedca8eaac991742e3b61', 1345714054, 'c2Vzc2lvbl9pZHxzOjMyOiI2YzMyY2I0MWM4ZmJlZGNhOGVhYWM5OTE3NDJlM2I2MSI7dG90YWxfaGl0c3xpOjE0Nztfa2ZfZmxhc2hffGE6MTp7czo4OiJzZXNzX2JicyI7czozOiJuZXciO311c2VyX2FnZW50fHM6OTk6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjEgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMjEuMC4xMTgwLjgzIFNhZmFyaS81MzcuMSI7aXBfYWRkcmVzc3xzOjk6IjEyNy4wLjAuMSI7bGFzdF9hY3Rpdml0eXxpOjEzNDU3MTQwNTI7c2Vzc19oaXNfY2xpZW50fGE6Mjp7czo0OiJiYWNrIjtzOjExOiJiYnMvcGlkLzE2NSI7czo3OiJjdXJyZW50IjtzOjExOiJiYnMvcGlkLzE2NiI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjE5OiJhZG1pbl9tZW51X2NhdGVnb3J5IjtzOjc6ImN1cnJlbnQiO3M6MTI6ImFkbWluX3RoZW1lcyI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9c2Vzc19iYnN8YToyOntzOjg6InNlbF90eXBlIjtzOjA6IiI7czo3OiJrZXl3b3JkIjtzOjA6IiI7fQ=='),
+('6c32cb41c8fbedca8eaac991742e3b61', 1345772349, 'c2Vzc2lvbl9pZHxzOjMyOiI2YzMyY2I0MWM4ZmJlZGNhOGVhYWM5OTE3NDJlM2I2MSI7dG90YWxfaGl0c3xpOjE4MDtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMSAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMS4wLjExODAuODMgU2FmYXJpLzUzNy4xIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTc3MjM0NztzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MTE6ImJicy9waWQvMTY2IjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjc6InRrYWRtaW4iO3M6NzoiY3VycmVudCI7czoxMzoiYWRtaW5fYWNjb3VudCI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9'),
 ('f1f3e71d72b9a2c62a549662597b1b03', 1345702757, 'c2Vzc2lvbl9pZHxzOjMyOiJmMWYzZTcxZDcyYjlhMmM2MmE1NDk2NjI1OTdiMWIwMyI7dG90YWxfaGl0c3xpOjE7X2tmX2ZsYXNoX3xhOjA6e311c2VyX2FnZW50fHM6MTE4OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNS4xMiAoS0hUTUwsIGxpa2UgR2Vja28pIE1heHRob24vMy40LjIuMzAwMCBDaHJvbWUvMTguMC45NjYuMCBTYWZhcmkvNTM1LjEyIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTcwMjc1NDtzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MjI6Imh0dHA6Ly9sb2NhbGhvc3QvcGVzdC8iO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9');
 
 -- --------------------------------------------------------
