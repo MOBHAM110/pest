@@ -6,7 +6,7 @@
 <tr>	
     <td align="center" class="contact_content">
         <table class="contact_info">
-        <?php if ($contact->contact_address == 1) { ?>
+        <?php if ($contact->contact_address == 1&&!empty($this->site['site_address'])) { ?>
         <tr>
             <td align="right"><b><?php echo Kohana::lang('account_lang.lbl_address')?></b> :</td>
             <td align="left"><?php echo $this->site['site_address']?></td>
