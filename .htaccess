@@ -8,7 +8,7 @@ AddType x-mapp-php5 .php
 
 # Turn on URL rewriting
 RewriteEngine On
-#RewriteBase /
+RewriteBase /
 
 # Protect application and system files from being viewed
 RewriteRule ^(application|modules|system) - [F,L]
