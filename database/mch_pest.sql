@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 24, 2012 at 11:29 PM
+-- Generation Time: Sep 03, 2012 at 01:25 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -84,7 +84,15 @@ CREATE TABLE IF NOT EXISTS `bbs` (
   `bbs_level` int(11) DEFAULT '0',
   `bbs_sort_order` int(11) DEFAULT NULL,
   PRIMARY KEY (`bbs_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `bbs`
+--
+
+INSERT INTO `bbs` (`bbs_id`, `bbs_password`, `bbs_count`, `bbs_download`, `bbs_author`, `bbs_date_created`, `bbs_date_modified`, `bbs_order`, `bbs_status`, `bbs_page_id`, `bbs_left`, `bbs_right`, `bbs_level`, `bbs_sort_order`) VALUES
+(1, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
+(2, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -822,7 +830,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('0e3228ba838fb2edcf1e175b75387320', 1345822142, 'c2Vzc2lvbl9pZHxzOjMyOiIwZTMyMjhiYTgzOGZiMmVkY2YxZTE3NWI3NTM4NzMyMCI7dG90YWxfaGl0c3xpOjIyO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44MyBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzQ1ODIyMTM1O3Nlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjE5OiJhZG1pbl9tZW51X2NhdGVnb3J5IjtzOjc6ImN1cnJlbnQiO3M6MjA6ImFkbWluX3BhZ2Uvdmlldy9tcHR0Ijt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO31zZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MjI6Imh0dHA6Ly9sb2NhbGhvc3QvcGVzdC8iO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9'),
+('453a66d471324a2f28958a2ceca22ace', 1346606638, 'c2Vzc2lvbl9pZHxzOjMyOiI0NTNhNjZkNDcxMzI0YTJmMjg5NThhMmNlY2EyMmFjZSI7dG90YWxfaGl0c3xpOjE2O19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44MyBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzQ2NjA2NjM3O3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czo0OiJob21lIjtzOjc6ImN1cnJlbnQiO3M6NzoiY29udGFjdCI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjEzOiJhZG1pbl9hY2NvdW50IjtzOjc6ImN1cnJlbnQiO3M6MTI6ImFkbWluX2NvbmZpZyI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9'),
+('0e3228ba838fb2edcf1e175b75387320', 1345822215, 'c2Vzc2lvbl9pZHxzOjMyOiIwZTMyMjhiYTgzOGZiMmVkY2YxZTE3NWI3NTM4NzMyMCI7dG90YWxfaGl0c3xpOjIzO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44MyBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzQ1ODIyMjEzO3Nlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjE5OiJhZG1pbl9tZW51X2NhdGVnb3J5IjtzOjc6ImN1cnJlbnQiO3M6MjA6ImFkbWluX3BhZ2Uvdmlldy9tcHR0Ijt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO31zZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MjI6Imh0dHA6Ly9sb2NhbGhvc3QvcGVzdC8iO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9'),
 ('6c32cb41c8fbedca8eaac991742e3b61', 1345772349, 'c2Vzc2lvbl9pZHxzOjMyOiI2YzMyY2I0MWM4ZmJlZGNhOGVhYWM5OTE3NDJlM2I2MSI7dG90YWxfaGl0c3xpOjE4MDtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMSAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMS4wLjExODAuODMgU2FmYXJpLzUzNy4xIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTc3MjM0NztzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MTE6ImJicy9waWQvMTY2IjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjc6InRrYWRtaW4iO3M6NzoiY3VycmVudCI7czoxMzoiYWRtaW5fYWNjb3VudCI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9');
 
 -- --------------------------------------------------------
@@ -861,7 +870,7 @@ CREATE TABLE IF NOT EXISTS `site` (
 --
 
 INSERT INTO `site` (`site_id`, `site_name`, `site_address`, `site_city`, `site_state`, `site_zipcode`, `site_logo`, `site_logo_width`, `site_logo_height`, `site_phone`, `site_fax`, `site_slogan`, `site_email`, `site_title`, `site_keyword`, `site_description`, `site_contact_name`, `site_facebook`, `site_twitter`, `site_youtube`, `site_linkedin`) VALUES
-(1, 'Pest Control', '259 Nguyễn Thái Sơn, P.17, Q.Gò Vấp, Tp.HCM', 'Hồ Chí Minh', '', '', 'logo_mch.png', 97, 99, '8487668', '', 'Nothing simple more', 'leo@techknowledge.vn', 'Pest Control', '', '', '', '', '', '', '');
+(1, 'A&K Computers Inc.', '440 North Wolfe Rd.', 'Sunnyvale', 'CA', '94085', 'logo_mch.png', 97, 99, '1-408-244-4811', '1-408-493-4426', 'Computer experts for today''s PMP', 'webmaster@akcomp.com', 'A&K Computers Inc', 'Pest Control Company / Termite control Company', 'Pest Control Company / Termite control Company', '', '', '', '', '');
 
 -- --------------------------------------------------------
 

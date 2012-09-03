@@ -56,7 +56,7 @@ class Bbs_Controller extends Template_Controller {
             //Check bbs
             $bbs = $this->bbs_model->get(TRUE, $this->page_id, $bbs_id, $this->get_client_lang());
             if(Configuration_Model::get_value('ENABLE_AKCOMP')&&$this->page_id==165){
-                $json = $this->curl_download('http://project.tikay.net/akcomp/home/get_news_page'); 
+                $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
                 $mlist = json_decode($json,true); //$this->print_array($mlist);
                 if(!empty($mlist)){ foreach($mlist as $id => $value){
                     if($bbs_id == $value['bbs_id']) $bbs = $value;
@@ -279,7 +279,7 @@ class Bbs_Controller extends Template_Controller {
         $this->template->content = new View('templates/' . $this->site['config']['TEMPLATE'] . '/bbs/list');
         
         if(Configuration_Model::get_value('ENABLE_AKCOMP')&&$this->page_id==165){
-            $json = $this->curl_download('http://project.tikay.net/akcomp/home/get_news_page'); 
+            $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
             $mlist = json_decode($json,true); //$this->print_array($mlist);
             $total_rows = count($mlist);
             $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;

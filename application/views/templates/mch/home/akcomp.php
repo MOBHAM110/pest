@@ -172,7 +172,7 @@ for($i=0;$i<5;$i++) {
 <script type="text/javascript" src="<?php echo $this->site['base_url']?>plugins/jquery.tmpl/jquery.tmpl.min.js"></script>
 <script language="javascript">
 $(document).ready(function() {
-	$.getJSON("http://project.tikay.net/akcomp/home/get_news",
+	$.getJSON("http://akcomp.com/home/get_news",
 	function(data) {
 		if(data) { 
 			$("div#newsAkcomp").show();
@@ -187,7 +187,7 @@ $(document).ready(function() {
 function get_news(id){
 	$("img#imgLoading").show();
 	$("div#newsAkcomp").hide();
-	$.getJSON("http://project.tikay.net/akcomp/home/get_news/"+id,
+	$.getJSON("http://akcomp.com/home/get_news/"+id,
 	function(data) {
 		if(data) { 
 			$("img#imgLoading").hide();			
