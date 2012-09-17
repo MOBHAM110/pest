@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 03, 2012 at 01:25 AM
+-- Generation Time: Sep 17, 2012 at 04:22 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -84,15 +84,14 @@ CREATE TABLE IF NOT EXISTS `bbs` (
   `bbs_level` int(11) DEFAULT '0',
   `bbs_sort_order` int(11) DEFAULT NULL,
   PRIMARY KEY (`bbs_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `bbs`
 --
 
 INSERT INTO `bbs` (`bbs_id`, `bbs_password`, `bbs_count`, `bbs_download`, `bbs_author`, `bbs_date_created`, `bbs_date_modified`, `bbs_order`, `bbs_status`, `bbs_page_id`, `bbs_left`, `bbs_right`, `bbs_level`, `bbs_sort_order`) VALUES
-(1, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL),
-(2, NULL, 1, 0, NULL, NULL, NULL, 0, 1, 0, 0, 0, 0, NULL);
+(1, '', 1, 0, '', NULL, NULL, 0, 1, 1, 1, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -830,9 +829,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('453a66d471324a2f28958a2ceca22ace', 1346606638, 'c2Vzc2lvbl9pZHxzOjMyOiI0NTNhNjZkNDcxMzI0YTJmMjg5NThhMmNlY2EyMmFjZSI7dG90YWxfaGl0c3xpOjE2O19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44MyBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzQ2NjA2NjM3O3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czo0OiJob21lIjtzOjc6ImN1cnJlbnQiO3M6NzoiY29udGFjdCI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjEzOiJhZG1pbl9hY2NvdW50IjtzOjc6ImN1cnJlbnQiO3M6MTI6ImFkbWluX2NvbmZpZyI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9'),
-('0e3228ba838fb2edcf1e175b75387320', 1345822215, 'c2Vzc2lvbl9pZHxzOjMyOiIwZTMyMjhiYTgzOGZiMmVkY2YxZTE3NWI3NTM4NzMyMCI7dG90YWxfaGl0c3xpOjIzO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44MyBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzQ1ODIyMjEzO3Nlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjE5OiJhZG1pbl9tZW51X2NhdGVnb3J5IjtzOjc6ImN1cnJlbnQiO3M6MjA6ImFkbWluX3BhZ2Uvdmlldy9tcHR0Ijt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO31zZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MjI6Imh0dHA6Ly9sb2NhbGhvc3QvcGVzdC8iO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9'),
-('6c32cb41c8fbedca8eaac991742e3b61', 1345772349, 'c2Vzc2lvbl9pZHxzOjMyOiI2YzMyY2I0MWM4ZmJlZGNhOGVhYWM5OTE3NDJlM2I2MSI7dG90YWxfaGl0c3xpOjE4MDtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMSAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMS4wLjExODAuODMgU2FmYXJpLzUzNy4xIjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0NTc3MjM0NztzZXNzX2hpc19jbGllbnR8YToyOntzOjQ6ImJhY2siO3M6MTE6ImJicy9waWQvMTY2IjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fXNlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjc6InRrYWRtaW4iO3M6NzoiY3VycmVudCI7czoxMzoiYWRtaW5fYWNjb3VudCI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3Nfcm9sZXxOO3Nlc3NfYWRtaW58YTo1OntzOjI6ImlkIjtzOjE6IjEiO3M6NToibGV2ZWwiO3M6MToiMSI7czo4OiJ1c2VybmFtZSI7czoxMDoic3VwZXJhZG1pbiI7czo1OiJlbWFpbCI7czoyMDoibGVvQHRlY2hrbm93bGVkZ2Uudm4iO3M6NDoicm9sZSI7czoxOiIwIjt9');
+('5d9c462f98bb01b77f8047a32228136f', 1347869341, 'c2Vzc2lvbl9pZHxzOjMyOiI1ZDljNDYyZjk4YmIwMWI3N2Y4MDQ3YTMyMjI4MTM2ZiI7dG90YWxfaGl0c3xpOjIxO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44OSBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czoxMzoiNTguMTg2LjIwMy4zMSI7bGFzdF9hY3Rpdml0eXxpOjEzNDc4NjkzNDE7c2Vzc19oaXNfYWRtaW58YToyOntzOjQ6ImJhY2siO3M6MjQ6ImFkbWluX2Jicy9zZWFyY2gvcGlkLzE2MyI7czo3OiJjdXJyZW50IjtzOjEyOiJhZG1pbl90aGVtZXMiO31zZXNzX2FkbWluX2xhbmd8czoxOiIxIjtzZXNzX3JvbGV8TjtzZXNzX2FkbWlufGE6NTp7czoyOiJpZCI7czoxOiIyIjtzOjU6ImxldmVsIjtzOjE6IjIiO3M6ODoidXNlcm5hbWUiO3M6NToiYWRtaW4iO3M6NToiZW1haWwiO3M6Mjc6Imxlby50ZWNoa25vd2xlZGdlQGdtYWlsLmNvbSI7czo0OiJyb2xlIjtzOjE6IjEiO31zZXNzX3NlYXJjaF9iYnN8YTozOntzOjc6ImRpc3BsYXkiO3M6MDoiIjtzOjc6ImtleXdvcmQiO3M6MDoiIjtzOjg6InNlbF90eXBlIjtzOjA6IiI7fXNlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoyMToiaHR0cDovL3Blc3QudHNob3Audm4vIjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fQ==');
 
 -- --------------------------------------------------------
 

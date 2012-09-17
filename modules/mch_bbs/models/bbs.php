@@ -161,10 +161,14 @@ class Bbs_Model extends Model {
         }
     }
 
-    public function increase_count($id) {
-        $result = ORM::factory('bbs_orm', $id);
-        $result->bbs_count = $result->bbs_count + 1;
-        $result->save();
+    public function increase_count($id='') {
+        if(!empty($id)){
+            $result = ORM::factory('bbs_orm', $id); //var_dump($result); die();
+            if(!empty($result->bbs_id)){
+                $result->bbs_count = $result->bbs_count + 1;
+                $result->save();
+            }
+        }
     }
 
 }
