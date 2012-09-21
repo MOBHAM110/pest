@@ -87,7 +87,7 @@
 		</td>
 		<td align="center"><?php echo $ml['bbs_date']?></td>
 		<?php if (!empty($this->sess_cus)) { ?>
-		<td>
+		<td align="center">
 		<?php if (($this->sess_cus['username'] == $ml['bbs_author'] && !empty($ml['bbs_author'])) || $this->sess_cus['level'] < 3) { ?>&nbsp;
             <a href="<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/edit/id/<?php echo $ml['bbs_id']?>">
             <img border="0" width="16" height="16" src="<?php echo $this->site['theme_url']?>index/pics/icon_edit.png" alt="Click here to edit" />
