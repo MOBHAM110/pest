@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* Contact */
+table.contact{}
+table.contact td{}
+table.contact td.contact_title {border-bottom:1px #3b1123 dotted;text-align:left;}
+table.contact td.contact_content { text-align:center;}
+		table.contact_info{ line-height:20px;}
+		table.contact_form{}
+		table.contact_form td{ padding:5px;}

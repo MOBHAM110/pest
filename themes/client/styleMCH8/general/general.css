@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* General */
+table.general {}
+table.general td.general_top {}
+table.general td.general_middle {line-height:20px;}
+table.general td.general_bottom {}
