@@ -236,7 +236,7 @@ ul.sf-menu_Ce li li li:hover ul, ul.sf-menu_Ce li li li.sfHover ul {
 	color:#0FF;
 }
 .sf-menu_Ce li li li {
-	background:	#cee5f7;
+	background:	#1594cf;
 	color:#fff;
 }
 .sf-menu_Ce a:focus, .sf-menu_Ce a:hover {
@@ -617,3 +617,5 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 .sf-shadow ul.sf-shadow-off {
 	background: transparent;
 }
+ul.sf-menu_Ce li ul {margin-top:4px;}
+ul.sf-menu_Ce li ul li ul{margin-top:-1px; margin-left:60px;}
