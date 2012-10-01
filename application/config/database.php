@@ -28,16 +28,7 @@ $config['default'] = array
 (
 	'benchmark'     => TRUE,
 	'persistent'    => FALSE,
-	'connection'    => array
-	(
-		'type' => '',
-		'user' => '',
-		'pass' => '',
-		'host' => '',
-		'port'     => FALSE,
-		'socket'   => FALSE,
-		'database' => ''
-	),
+	'connection'    => 'mysql://root:@localhost/mch_pest',
 	'character_set' => 'utf8',
 	'table_prefix'  => '',
 	'object'        => TRUE,
@@ -49,7 +40,16 @@ $config['default'] = array
 (
 	'benchmark'     => TRUE,
 	'persistent'    => FALSE,
-	'connection'    => 'mysql://root:@localhost/mch_pest',
+	'connection'    => array
+	(
+		'type' => '',
+		'user' => '',
+		'pass' => '',
+		'host' => '',
+		'port'     => FALSE,
+		'socket'   => FALSE,
+		'database' => ''
+	),
 	'character_set' => 'utf8',
 	'table_prefix'  => '',
 	'object'        => TRUE,
