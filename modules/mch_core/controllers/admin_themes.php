@@ -252,20 +252,60 @@ class Admin_themes_Controller extends Template_Controller {
 
     public function change_default($id) {
         $themes = ORM::factory('themes_orm', $id);
-
+        $theme_curent = Model::factory('configuration')->get_value('CLIENT_THEME');
+        $theme_curent = str_replace('styleMCH','',$theme_curent);
         if (empty($themes->themes_id))
             $this->session->set_flash('error_msg', Kohana::lang('errormsg_lang.error_parameter'));
         else {
             $result = Model::factory('configuration')->update_value('CLIENT_THEME', $themes->themes_dir);
-
-            if ($result->count() > 0)
+            if ($result->count() > 0){
                 $this->session->set_flash('success_msg', Kohana::lang('errormsg_lang.msg_data_save'));
+                $this->change_menu($themes->themes_id,$theme_curent);
+            }
             else
                 $this->session->set_flash('error_msg', Kohana::lang('errormsg_lang.error_data_save'));
         }
-
+        
         url::redirect($this->site['history']['back']);
         die();
+    }
+    
+    public function change_menu($theme_id='',$theme_curent=''){
+        $gpl = Gpl_Model::get();
+        $menu = '';
+        if($theme_curent > 5 && $theme_id >=1 && $theme_id <=5){
+            if(!empty($gpl['top_menu'])){
+                $menu = $gpl['top_menu'];
+                $gpl['top_menu'] = '';
+            }
+            if($gpl['left_col'] && !empty($gpl['left_menu'])){
+                $menu .= $gpl['left_menu'];
+                $gpl['left_menu'] = '';
+            }
+            echo 'a_';
+            $gpl['center_menu'] = $menu;
+            $gpl['top_B_banner'] = '';
+        } else if($theme_curent <= 5 && $theme_id >5 && $theme_id <=10){
+            
+            if(!empty($gpl['center_menu'])){
+                $menu = $gpl['center_menu'];
+                $gpl['center_menu'] = '';
+            }
+            if($gpl['left_col'] && !empty($gpl['left_menu'])){
+                $menu .= $gpl['left_menu'];
+                $gpl['left_menu'] = '';
+            }
+            echo 'b_';
+            $gpl['top_menu'] = $menu;
+            
+            $listBanner = Gpl_Model::get_list_banner($gpl);
+            $list = '';
+            foreach($listBanner as $value)
+                $list .= $value['banner_id'].'|';
+            $gpl['top_B_banner'] = $list;
+        }
+        
+        Gpl_Model::update($gpl);
     }
 
 }
