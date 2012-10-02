@@ -300,7 +300,7 @@ class Album_Controller extends Template_Controller {
 
         // Id of tab need selected
         $this->mr['tab_id'] = $this->input->post('tab_id');
-
+        
         $bbs = $this->bbs_model->get(FALSE, '', $this->mr['bbs_id'], $this->get_client_lang());
 
         $img_ext = Model::factory('file_type')->get_fext('image');
@@ -353,7 +353,7 @@ class Album_Controller extends Template_Controller {
         $post->add_rules('txt_name', 'required');
         if(!$id)
         $post->add_rules('txt_pass', 'length[6,20]', 'required');
-        $post->add_rules('txt_content', 'required');
+        //$post->add_rules('txt_content', 'required');
 
         for ($i = 1; $i <= 5; $i++) {
             $post->add_rules('txt_des' . $i, 'length[1,100]');
@@ -626,15 +626,15 @@ class Album_Controller extends Template_Controller {
     public function upload() {
         $this->auto_render = FALSE; // disable auto render
         //MCH_Core::upload_bbs_file('album', 'bbsFile', $this->mr['bbs_id']);
-        if (!empty($_FILES)) {
+        if (!empty($_REQUEST)) {
             $file_type_model = new File_type_Model();
             $file_img_id = $file_type_model->get_fid('image');
-            $file_up_id = $file_type_model->get_fid('', $_FILES['bbsFile']['name']);
+            $file_up_id = $file_type_model->get_fid('', $_FILES['file']['name']);
 
             if ($file_img_id == $file_up_id) {
                 $path_dir = MCH_Core::format_path(DOCROOT . 'uploads/album/');
 
-                $path_file = upload::save('bbsFile', NULL, $path_dir);
+                $path_file = upload::save($_FILES['file'], NULL, $path_dir);
                 $file_name = basename($path_file);
 
                 // create file image thumbnail

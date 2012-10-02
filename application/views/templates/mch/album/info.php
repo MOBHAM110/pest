@@ -1,4 +1,4 @@
-<table class="form" name="album_info" cellspacing="0" cellpadding="5" width="100%">
+<table class="" name="album_info" cellspacing="0" cellpadding="5" width="100%">
 <tr>
     <td align="right" width="14%"><?php echo Kohana::lang('global_lang.lbl_title')?>&nbsp;<font color="#FF0000">*</font></td>
     <td align="left">
@@ -19,27 +19,9 @@
 </tr>
 <tr>
     <td valign="top" align="right"><?php echo Kohana::lang('global_lang.lbl_content')?>&nbsp;<font color="#FF0000">*</font></td>
-    <td><textarea name="txt_content" cols="50" rows="20" id="txt_content"><?php echo isset($mr['bbs_content'])?$mr['bbs_content']:''?></textarea></td>
+    <td>
+        <div class="yui3-u-4-5"><textarea class="ckeditor" name="txt_content" cols="50" rows="20" style="width:100%;height:100px" id="txt_content"><?php echo isset($mr['bbs_content'])?$mr['bbs_content']:''?></textarea></div>
+    </td>
 </tr>
-</table>
-<script type="text/javascript" src="<?php echo url::base()?>plugins/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	tinyMCE.init({
-		mode : "textareas",
-		theme : "advanced",
-		plugins : "searchreplace,insertdatetime,preview",
-		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,sub,sup,|,formatselect,fontselect,fontsizeselect",
-		theme_advanced_buttons2 : "search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,cleanup,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-		theme_advanced_buttons3 : "",
-		theme_advanced_buttons4 : "",
-		theme_advanced_toolbar_location : "top",
-		theme_advanced_toolbar_align : "left",
-		theme_advanced_statusbar_location : "bottom",
-		theme_advanced_resizing : false,
-		forced_root_block : false,
-		force_br_newlines : true,
-		force_p_newlines : false
-	});
-});
-</script>					
+</table>		
+<script language="javascript" src="<?php echo url::base()?>plugins/ckeditor/ckeditor.js"></script>

@@ -3,23 +3,23 @@
 <table class="register" align="center" border="0" cellspacing="0" cellpadding="8" width="100%">
 <tr>
     <td align="right" width="35%"><?php echo Kohana::lang('account_lang.lbl_username')?></td>
-    <td align="left"><input class="username" name="txt_username" type="text" id="txt_username" style="width:200px;" value="<?php echo isset($mr['txt_username'])?$mr['txt_username']:''?>">	
+    <td align="left"><input class="" name="txt_username" type="text" id="txt_username" style="width:200px;" value="<?php echo isset($mr['txt_username'])?$mr['txt_username']:''?>">	
     <font color="#FF0000">*</font>&nbsp;</div>		
     </td>
 </tr>
 <tr>
     <td align="right"><?php echo Kohana::lang('account_lang.lbl_pass')?></td>
-    <td align="left"><input name="txt_pass" type="password" id="txt_pass" style="width:200px;" class="password"> 
+    <td align="left"><input name="txt_pass" type="password" id="txt_pass" style="width:200px;" class=""> 
     <font color="#FF0000">*</font></td>
 </tr>
 <tr>
     <td align="right"><?php echo Kohana::lang('account_lang.lbl_cfpass')?></td>
-    <td align="left"><input name="txt_cfpass" type="password" id="txt_cfpass" style="width:200px;" class="password"> 
+    <td align="left"><input name="txt_cfpass" type="password" id="txt_cfpass" style="width:200px;" class=""> 
     <font color="#FF0000">*</font></td>
 </tr>
 <tr>
     <td align="right"><?php echo Kohana::lang('account_lang.lbl_email')?></td>
-    <td align="left"><input name="txt_email" type="text" id="txt_email" value="<?php echo isset($mr['txt_email'])?$mr['txt_email']:''?>" style="width:200px;" class="email"> 
+    <td align="left"><input name="txt_email" type="text" id="txt_email" value="<?php echo isset($mr['txt_email'])?$mr['txt_email']:''?>" style="width:200px;" class=""> 
     <font color="#FF0000">*</font></td>
 </tr>
 <tr>
@@ -32,7 +32,7 @@
 </tr>
 <tr>
     <td align="right"><?php echo Kohana::lang('register_lang.lbl_retype_security')?></td>
-    <td align="left"><input type="text" name="captcha_response" size="10" class="password"/> 
+    <td align="left"><input type="text" name="captcha_response" size="10" class=""/> 
     <font color="#FF0000">*</font></td>
 </tr>
 <tr>

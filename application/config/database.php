@@ -42,13 +42,13 @@ $config['default'] = array
 	'persistent'    => FALSE,
 	'connection'    => array
 	(
-		'type' => '',
-		'user' => '',
+		'type' => 'mysql',
+		'user' => 'root',
 		'pass' => '',
 		'host' => '',
 		'port'     => FALSE,
 		'socket'   => FALSE,
-		'database' => ''
+		'database' => 'mch_pest'
 	),
 	'character_set' => 'utf8',
 	'table_prefix'  => '',

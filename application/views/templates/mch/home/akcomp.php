@@ -71,7 +71,7 @@ for($i=0;$i<5;$i++) {
 <?php }} ?>
 <!--HOME-->
 <div id="newsAkcomp" style="display:none">
-<table><tr><td width="50%">
+<table><tr><td width="50%" valign="top">
 <table class="home_bbs" cellspacing="0" cellpadding="0" border="0">
 <tr>
 	<td class="home_bbs_T_L"></td>
@@ -117,7 +117,7 @@ for($i=0;$i<5;$i++) {
     <td class="home_bbs_B_Ce"></td>
     <td class="home_bbs_B_R"></td>
 </tr> 
-</table></td><td width="50%">
+</table></td><td width="50%" valign="top">
 <table class="home_bbs" cellspacing="0" cellpadding="0" border="0">
 <tr>
 	<td class="home_bbs_T_L"></td>
