@@ -11,7 +11,9 @@ class Register_Controller extends Template_Controller {
         
 		$this->_get_session_msg();
 		
-		$this->mr = array_merge($this->mr, $this->page_model->get_page_lang($this->get_admin_lang(),$this->page_id));
+		//$this->mr = array_merge($this->mr, $this->page_model->get_page_lang($this->get_admin_lang(),$this->page_id));
+        $this->mr = array_merge($this->mr, $this->page_model->get_page_lang($this->get_client_lang(),$this->page_id));
+        
 	}
 	
 	private function _get_session_msg()
