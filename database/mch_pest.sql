@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 17, 2012 at 04:22 PM
+-- Generation Time: Oct 04, 2012 at 12:21 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -60,7 +60,15 @@ CREATE TABLE IF NOT EXISTS `banner` (
   `banner_height` int(5) NOT NULL,
   `banner_alt` text,
   PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`banner_id`, `banner_file`, `file_type_id`, `banner_link`, `banner_target`, `banner_width`, `banner_height`, `banner_alt`) VALUES
+(1, '1349316327banner1.png', 1, '', '_blank', 0, 0, ''),
+(2, '1349316339banner2.png', 1, '', '_blank', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -190,7 +198,7 @@ INSERT INTO `configuration` (`configuration_id`, `configuration_title`, `configu
 (15, 'Format Short Date', 'FORMAT_SHORT_DATE', 'm/d/Y', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (16, 'Format Long Date', 'FORMAT_LONG_DATE', 'F j, Y, g:i a', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (17, 'Admin Theme', 'ADMIN_THEME', '', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
-(18, 'Client Theme', 'CLIENT_THEME', 'styleMCH1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
+(18, 'Client Theme', 'CLIENT_THEME', 'styleMCH10', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (19, 'Default Status Register', 'DEF_SREG', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (20, 'Home Num Row', 'HOME_NUM_ROW', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (21, 'Home Num Column', 'HOME_NUM_COL', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
@@ -579,9 +587,9 @@ INSERT INTO `page` (`page_id`, `page_title_seo`, `page_keyword`, `page_descripti
 (64, NULL, '', '', 1, 5, 2, 9, 1, 8, 9, 0, ''),
 (65, NULL, '', '', 1, 5, 2, 18, 1, 6, 7, 0, ''),
 (98, NULL, '', '', 1, 5, 2, 19, 1, 12, 13, 0, ''),
-(159, '', '', '', 1, 5, 2, 1, 1, 18, 19, 0, ''),
-(160, '', '', '', 1, 5, 2, 1, 1, 20, 21, 0, ''),
-(161, '', '', '', 1, 5, 2, 1, 1, 22, 23, 0, ''),
+(159, '', '', '', 1, 5, 2, 1, 1, 18, 23, 0, ''),
+(160, '', '', '', 1, 5, 2, 1, 2, 21, 22, 0, ''),
+(161, '', '', '', 1, 5, 2, 1, 2, 19, 20, 0, ''),
 (162, '', '', '', 1, 5, 2, 1, 1, 24, 25, 0, ''),
 (163, '', '', '', 1, 5, 2, 11, 1, 30, 31, 0, ''),
 (164, '', '', '', 1, 5, 2, 13, 1, 34, 35, 0, '_blank'),
@@ -705,7 +713,7 @@ CREATE TABLE IF NOT EXISTS `page_layout` (
 --
 
 INSERT INTO `page_layout` (`page_id`, `center_banner`, `center_top_banner`, `center_bottom_banner`, `center_banner_order`, `content_center_order`, `top_menu`, `top_menu_level`, `center_menu`, `center_menu_level`, `top_banner`, `top_T_banner`, `top_B_banner`, `top_banner_order`, `center_menu_order`, `left_menu`, `left_menu_level`, `left_banner`, `left_T_banner`, `left_B_banner`, `left_banner_order`, `left_menu_order`, `right_menu`, `right_menu_level`, `right_banner`, `right_T_banner`, `right_B_banner`, `right_banner_order`, `right_menu_order`, `bottom_banner`, `bottom_menu`, `bottom_menu_level`, `left_outside_banner`, `right_outside_banner`, `left_col`, `right_col`) VALUES
-(1, '', '', '', 2, 1, '', 0, '2|159|160|161|162|165|166|163|5', 0, '20|', '', '', 1, 2, '', 0, '', '', '', 2, 1, '', 0, '24|', '', '', 1, 2, '', '2|164', 1, '', '', 0, 0);
+(1, '', '', '', 2, 1, '2|159|161|160|162|165|166|163|5', 0, '', 0, '20|', '', '1|2|', 1, 2, '', 0, '', '', '', 2, 1, '', 0, '24|', '', '', 1, 2, '', '2|164', 1, '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -829,7 +837,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('5d9c462f98bb01b77f8047a32228136f', 1347869341, 'c2Vzc2lvbl9pZHxzOjMyOiI1ZDljNDYyZjk4YmIwMWI3N2Y4MDQ3YTMyMjI4MTM2ZiI7dG90YWxfaGl0c3xpOjIxO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy4xIChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIxLjAuMTE4MC44OSBTYWZhcmkvNTM3LjEiO2lwX2FkZHJlc3N8czoxMzoiNTguMTg2LjIwMy4zMSI7bGFzdF9hY3Rpdml0eXxpOjEzNDc4NjkzNDE7c2Vzc19oaXNfYWRtaW58YToyOntzOjQ6ImJhY2siO3M6MjQ6ImFkbWluX2Jicy9zZWFyY2gvcGlkLzE2MyI7czo3OiJjdXJyZW50IjtzOjEyOiJhZG1pbl90aGVtZXMiO31zZXNzX2FkbWluX2xhbmd8czoxOiIxIjtzZXNzX3JvbGV8TjtzZXNzX2FkbWlufGE6NTp7czoyOiJpZCI7czoxOiIyIjtzOjU6ImxldmVsIjtzOjE6IjIiO3M6ODoidXNlcm5hbWUiO3M6NToiYWRtaW4iO3M6NToiZW1haWwiO3M6Mjc6Imxlby50ZWNoa25vd2xlZGdlQGdtYWlsLmNvbSI7czo0OiJyb2xlIjtzOjE6IjEiO31zZXNzX3NlYXJjaF9iYnN8YTozOntzOjc6ImRpc3BsYXkiO3M6MDoiIjtzOjc6ImtleXdvcmQiO3M6MDoiIjtzOjg6InNlbF90eXBlIjtzOjA6IiI7fXNlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoyMToiaHR0cDovL3Blc3QudHNob3Audm4vIjtzOjc6ImN1cnJlbnQiO3M6NDoiaG9tZSI7fQ==');
+('9e925197dee265d4fc2dbd335769b749', 1349324392, 'c2Vzc2lvbl9pZHxzOjMyOiI5ZTkyNTE5N2RlZTI2NWQ0ZmMyZGJkMzM1NzY5Yjc0OSI7dG90YWxfaGl0c3xpOjEwMTtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuNCAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMi4wLjEyMjkuNzkgU2FmYXJpLzUzNy40IjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0OTMyNDM5MDtzZXNzX2hpc19hZG1pbnxhOjI6e3M6NDoiYmFjayI7czozMDoiYWRtaW5fdGhlbWVzL2NoYW5nZV9kZWZhdWx0LzEwIjtzOjc6ImN1cnJlbnQiO3M6MTI6ImFkbWluX3RoZW1lcyI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoyMjoiaHR0cDovL2xvY2FsaG9zdC9wZXN0LyI7czo3OiJjdXJyZW50IjtzOjQ6ImhvbWUiO31zZXNzX3JvbGV8TjtzZXNzX2FkbWlufGE6NTp7czoyOiJpZCI7czoxOiIxIjtzOjU6ImxldmVsIjtzOjE6IjEiO3M6ODoidXNlcm5hbWUiO3M6MTA6InN1cGVyYWRtaW4iO3M6NToiZW1haWwiO3M6MjA6Imxlb0B0ZWNoa25vd2xlZGdlLnZuIjtzOjQ6InJvbGUiO3M6MToiMCI7fQ==');
 
 -- --------------------------------------------------------
 
@@ -927,7 +935,7 @@ CREATE TABLE IF NOT EXISTS `themes` (
   `themes_sort_order` int(11) DEFAULT NULL,
   `themes_status` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`themes_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `themes`
@@ -938,7 +946,12 @@ INSERT INTO `themes` (`themes_id`, `themes_name`, `themes_dir`, `themes_sort_ord
 (2, 'Style 2', 'styleMCH2', NULL, 1),
 (3, 'Style 3', 'styleMCH3', NULL, 1),
 (4, 'Style 4', 'styleMCH4', NULL, 1),
-(5, 'Style 5', 'styleMCH5', NULL, 1);
+(5, 'Style 5', 'styleMCH5', NULL, 1),
+(6, 'Style 6', 'styleMCH6', NULL, 1),
+(7, 'Style 7', 'styleMCH7', NULL, 1),
+(8, 'Style 8', 'styleMCH8', NULL, 1),
+(9, 'Style 9', 'styleMCH9', NULL, 1),
+(10, 'Style 10', 'styleMCH10', NULL, 1);
 
 -- --------------------------------------------------------
 

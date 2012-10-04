@@ -30,5 +30,12 @@ class Gpl_Model extends Model
 		
 		return (count($result) > 0 ? TRUE : FALSE);
 	}
+    
+    public function get_list_banner(){
+        $this->db->select('banner_id');
+        $result = $this->db->get('banner')->result_array(false);
+        
+        return (count($result) > 0)?$result:false;
+    }
 }
 ?>

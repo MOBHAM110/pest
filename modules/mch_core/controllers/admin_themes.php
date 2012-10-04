@@ -295,7 +295,6 @@ class Admin_themes_Controller extends Template_Controller {
                 $menu .= $gpl['left_menu'];
                 $gpl['left_menu'] = '';
             }
-            echo 'b_';
             $gpl['top_menu'] = $menu;
             
             $listBanner = Gpl_Model::get_list_banner($gpl);
