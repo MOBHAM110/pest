@@ -124,5 +124,23 @@ class MyFormat_Core {
     	$text = str_replace(" ","-",$text);
     	return strtolower($text);
     }
+    
+    public function url_format($url) {
+
+        if(!(strpos($url, "http://") === 0)
+        && !(strpos($url, "https://") === 0)) {
+            $url = "http://$url";
+        }
+        return $url;
+    }
+    
+    public function check_is_url($url) {
+
+        if(!(strpos($url, "http://") === 0)
+        && !(strpos($url, "https://") === 0)) {
+            return 0;
+        }
+        return 1;
+    }
 }
 ?>

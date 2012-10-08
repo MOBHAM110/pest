@@ -55,8 +55,10 @@
 </div>
 <div class="yui3-g">
 	<div class="yui3-u-1-6 right"><?php echo Kohana::lang('banner_lang.lbl_link')?>:</div>
-    <div class="yui3-u-4-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex="5" type="text" name="txt_link" id="txt_link" size="50" value="<?php echo isset($mr['banner_link'])?$mr['banner_link']:''?>"/>      
-	</div>
+    <div class="yui3-u-4-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input tabindex="5" type="text" name="txt_link" id="txt_link" size="50" value="<?php echo isset($mr['banner_link'])?$mr['banner_link']:''?>"/>      
+        (Link: http://www.abc.com)
+    </div>
 </div>
 <div class="yui3-g">
 	<div class="yui3-u-1-6 right">Alt:</div>

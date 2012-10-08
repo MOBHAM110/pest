@@ -1,23 +1,30 @@
+<script language="javascript" src="<?php echo url::base()?>plugins/jquery.maskedinput/jquery-simulate.js"></script>
+<script language="javascript" src="<?php echo url::base()?>plugins/jquery.maskedinput/regex-mask-plugin.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+    $('.txt_username').regexMask(/^\s*[a-zA-Z0-9_.]+$/);
 	$('#frm').validate({
 		rules: {
 			txt_username: {
-				required: true,
+				required: true
+                //minlength: 3,
+                //maxlength: 16
 			},
 			txt_email: {
 		  		required: true,
 		  		email: true
 			},
 			txt_pass: {
-				required: true
+				required: true,
+                minlength: 6
 			},
 			txt_cfpass: {
 				required: true,
-				equalTo: "#txt_pass"
+				equalTo: "#txt__pass",
+                minlength: 6
 			},
 			captcha_response: {
-                required: true,
+                required: true
             }
 	    },
 	    messages: {
@@ -70,4 +77,5 @@ $(document).ready(function() {
 		success: $.noop
 	});
 });
+
 </script>

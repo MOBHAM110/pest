@@ -24,7 +24,7 @@
 </div>  
 <div class="yui3-g" id="page_menu" style="display:none;">
   	<div class="yui3-u-1-6 right"><?php echo Kohana::lang('page_lang.lbl_link')?>:</div>
-  	<div class="yui3-u-4-5"><input type="text" name="txt_content_url" id="txt_content_url" size="50" value="<?php echo (isset($mr['page_content'])&&isset($mr['page_type_name'])&&$mr['page_type_name']=='menu')?$mr['page_content']:''?>"></div>
+  	<div class="yui3-u-4-5"><input type="text" name="txt_content_url" id="txt_content_url" size="50" value="<?php echo (isset($mr['page_content'])&&isset($mr['page_type_name'])&&$mr['page_type_name']=='menu'&&!empty($mr['page_content']))?$mr['page_content']:'http://'?>"></div>
 </div>
 <div class="yui3-g" id="page_target" style="display:none">
 	<div class="yui3-u-1-6 right"><?php echo Kohana::lang('banner_lang.lbl_target')?>:</div>
