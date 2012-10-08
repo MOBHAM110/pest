@@ -26,10 +26,16 @@
     <?php if (count($mr['bbs_file']) > 0) { ?>
     <tr>
         <td class="bbs_item_File">
+        <script type="text/javascript" src="<?php echo url::base()?>plugins/media/media.js"></script>
+		<script type="text/javascript" src="<?php echo url::base()?>plugins/media/chile.js"></script>
+        <script type="text/javascript" src="<?php echo url::base()?>plugins/media/metadata.js"></script>
         <?php foreach ($mr['bbs_file'] as $file) { ?>
             <?php $file_type = ORM::factory('file_type_orm', $file->file_type_id)->file_type_detail?>
             <a href="javascript:location.href='<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/download/<?php echo $file->bbs_file_id?>'">
-            <img src="<?php echo url::base()?>themes/admin/pics/icon_<?php echo $file_type?>.png" border="0" width="16" height="16"/></a> | <a href="javascript:location.href='<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/download/<?php echo $file->bbs_file_id?>'"><?php echo Kohana::lang('global_lang.lbl_download')?></a> : <?php echo $file->bbs_file_download?><br />       	
+            <img src="<?php echo url::base()?>themes/admin/pics/icon_<?php echo $file_type?>.png" border="0" width="16" height="16"/></a> | <a href="javascript:location.href='<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/download/<?php echo $file->bbs_file_id?>'"><?php echo Kohana::lang('global_lang.lbl_download')?></a> : <?php echo $file->bbs_file_download?><br />
+            <?php if($file_type=='music'){?>
+            <a class="media" style="float:left;" href="<?php echo url::base()?>uploads/storage/<?php echo $file->bbs_file_name?>"></a> 
+            <?php }?>
         <?php } // end foreach ?>
         </td>
     </tr>
@@ -50,7 +56,7 @@
 	<td class="bbs_btn">
     <?php if ((!empty($this->sess_cus) && (($this->sess_cus['username'] == $mr['bbs_author'] && !empty($mr['bbs_author'])) || $this->sess_cus['level'] < 3)) || $mr['page_write_permission'] == 5) {?>
     <button onclick="javascript:update_bbs('edit')"><?php echo Kohana::lang('global_lang.btn_edit')?></button>
-	<button onclick="javascript:update_bbs('delete')"><?php echo Kohana::lang('global_lang.btn_delete')?></button>
+	<button onclick="return confirm('Do you want delete?')?update_bbs('delete'):'';"><?php echo Kohana::lang('global_lang.btn_delete')?></button>
     <?php }//edit/del ?>
 	<?php if (!empty($this->sess_cus)) { ?>
     <?php if ($this->sess_cus['level'] <= $mr['page_write_permission']) { ?>
@@ -92,7 +98,7 @@
             <a href="<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/edit/id/<?php echo $ml['bbs_id']?>">
             <img border="0" width="16" height="16" src="<?php echo $this->site['theme_url']?>index/pics/icon_edit.png" alt="Click here to edit" />
             </a>
-            <a href="<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/delete/id/<?php echo $ml['bbs_id']?>">
+            <a href="<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/delete/id/<?php echo $ml['bbs_id']?>" onclick="return confirm('Do you want delete?')">
             <img border="0" width="16" height="16" src="<?php echo $this->site['theme_url']?>index/pics/icon_del.png" alt="Click here to delete" />
             </a>
         <?php } // end if ?>
@@ -100,7 +106,7 @@
 		<?php } // if logined ?>
 	</tr>
 	<?php } // end foreach ?>
-	<tr <?php if(Configuration_Model::get_value('ENABLE_AKCOMP')) echo 'style="display:none"'?> ><td class="bbs_list_search" colspan="3">                
+	<tr><td class="bbs_list_search" colspan="3">                
         <form name="frmlist" id="frmlist" action="<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/search" method="post">        <select name=sel_type>
             <option value='' > - - - </option>
             <option value='1' <?php echo isset($mr['type1_selected'])?$mr['type1_selected']:''?> ><?php echo Kohana::lang('global_lang.lbl_title')?></option>

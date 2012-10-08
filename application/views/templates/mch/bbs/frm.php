@@ -20,7 +20,7 @@
         <tr><td align="left"><a href="<?php echo url::base()?>uploads/storage/<?php echo $list_file[$i-1]->bbs_file_name?>">
         <?php $file_type = ORM::factory('file_type_orm', $list_file[$i-1]->file_type_id)->file_type_detail?>
         <img src="<?php echo url::base()?>themes/admin/pics/icon_<?php echo $file_type?>.png" border="0"/>        </a>&nbsp;
-            <button type="button" name="btn_delete" id="btn_delete" class="button" onclick="javascript:location.href='<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/delete_file/<?php echo $list_file[$i-1]->bbs_file_id?>/id/<?php echo $mr['bbs_id']?>'"/><span><?php echo Kohana::lang('client_lang.btn_delete') ?></span></button></td>
+            <button type="button" name="btn_delete" id="btn_delete" class="button" onclick="return confirm('Do you want delete?')?(location.href='<?php echo url::base()?>bbs/pid/<?php echo $this->page_id?>/delete_file/<?php echo $list_file[$i-1]->bbs_file_id?>/id/<?php echo $mr['bbs_id']?>'):''"/><span><?php echo Kohana::lang('client_lang.btn_delete') ?></span></button></td>
 		</tr>
         <?php } else { ?>
         <tr><td align="left"><input type="file" name="attach_file<?php echo $i?>" id="attach_file<?php echo $i?>"></td></tr>
