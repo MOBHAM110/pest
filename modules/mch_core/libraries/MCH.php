@@ -96,7 +96,7 @@ class MCH_Core {
             }
             else {
                 $str .= '<a href="' . (empty($menu['page_content']) ? '#">' 
-                        : (MyFormat::check_is_url($menu[$key]['page_content'])?$menu['page_content']:url::base().$menu['page_content']) . '" target="' 
+                        : (MyFormat::check_is_url($menu['page_content'])?$menu['page_content']:url::base().$menu['page_content']) . '" target="' 
                         . (!empty($menu['page_target'])?$menu['page_target']:Model::factory('configuration')->get_value('TARGET_MENU'))
                         . '">');
             }
