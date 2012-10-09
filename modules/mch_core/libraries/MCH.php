@@ -87,7 +87,7 @@ class MCH_Core {
         $str = '';
         foreach ($list_menu as $i => $menu) {
             $str .= $tab_html_begin;
-
+            
             if ($menu['page_type_name'] != 'menu') {
                 $str .= '<a href="' . url::base() . $menu['page_type_name'];
                 if ($menu['page_type_special'] == 0)
@@ -96,7 +96,7 @@ class MCH_Core {
             }
             else {
                 $str .= '<a href="' . (empty($menu['page_content']) ? '#">' 
-                        : (strpos($menu['page_content'],'http')?$menu['page_content']:url::base().$menu['page_content']) . '" target="' 
+                        : (MyFormat::check_is_url($menu['page_content'])?$menu['page_content']:url::base().$menu['page_content']) . '" target="' 
                         . (!empty($menu['page_target'])?$menu['page_target']:Model::factory('configuration')->get_value('TARGET_MENU'))
                         . '">');
             }
