@@ -107,12 +107,21 @@
     </div>
 </div>
 <div class="yui3-g">
-	<div class="yui3-u-1-6 right">A&K Computer's Blog&News:</div>
+	<div class="yui3-u-1-6 right">Blog&News:</div>
     <div class="yui3-u-4-5">
     	<select name="sel_akcomp">
-        <option value="1" <?php echo Configuration_Model::get_value('ENABLE_AKCOMP')==1?'selected':''?>>Use</option>
         <option value="0" <?php echo Configuration_Model::get_value('ENABLE_AKCOMP')==0?'selected':''?>>Not Use</option>
+        <option value="1" <?php echo Configuration_Model::get_value('ENABLE_AKCOMP')==1?'selected':''?>>Use A&K</option>
+        <option value="2" <?php echo Configuration_Model::get_value('ENABLE_AKCOMP')==2?'selected':''?>>Use Rss</option>
         </select>
     </div>
+</div>
+<div class="yui3-g">
+	<div class="yui3-u-1-6 right">Rss News Url:</div>
+    <div class="yui3-u-4-5"><input name="txt_rss_news_url" type="text" id="txt_rss_news_url" value="<?php echo $this->site['config']['RSS_NEWS_URL']?>" size="12" style="width:400px" /></div>
+</div>
+<div class="yui3-g">
+	<div class="yui3-u-1-6 right">Rss Blog Url:</div>
+    <div class="yui3-u-4-5"><input name="txt_rss_blog_url" type="text" id="txt_rss_blog_url" value="<?php echo $this->site['config']['RSS_BLOG_URL']?>" size="12" style="width:400px" /></div>
 </div>
 <?php } // end if have target menu ?>

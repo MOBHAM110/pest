@@ -9,7 +9,7 @@ class Home_Controller extends Template_Controller {
         $this->template = new View('templates/'.$this->site['config']['TEMPLATE'].'/client/index');
         $this->template->layout = $this->get_MCH_layout();
 		//$this->init_template_layout(); 
-		
+		$this->rss_model = new Rss_Model();
 		// Init session 
 		$this->_get_session_msg();		
 		
@@ -48,8 +48,8 @@ class Home_Controller extends Template_Controller {
    	private function index()
 	{		
 		$this->template->content = new View('templates/'.$this->site['config']['TEMPLATE'].'/home/index');		
-		
-		$bbs_model = new Bbs_Model();
+
+        $bbs_model = new Bbs_Model();
 		$page_model = new Page_Model();	
 		$mlist = array();	
 		
@@ -194,7 +194,11 @@ class Home_Controller extends Template_Controller {
 				else unset($mlist[$i][$j]);
     		}
     	}		
-		
+        
+        $rssNews = $this->rss_model->getRss($this->site['config']['RSS_NEWS_URL']);
+		$mlist['rssnews'] = $rssNews;
+        $rssBlog = $this->rss_model->getRss($this->site['config']['RSS_BLOG_URL']);
+		$mlist['rssblog'] = $rssBlog;
 		$this->template->content->mlist = $mlist;
 		//echo Kohana::debug($mlist);die();		
 	}	

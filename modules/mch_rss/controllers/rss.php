@@ -8,7 +8,7 @@ class Rss_Controller extends Template_Controller
         parent::__construct();
         $this->template = new View('templates/'.$this->site['config']['TEMPLATE'].'/client/index');
         $this->template->layout = $this->get_MCH_layout();	// init layout for template controller        
-        
+        $this->rss_model = new Rss_Model();
         /* --------------------------------------get session if exist ------------------------------------------*/		
 		$this->_get_session_msg();
 		/* --------------------------------------------------------------------------------------------------- */
@@ -32,6 +32,7 @@ class Rss_Controller extends Template_Controller
 	public function __call($method, $arguments)
     {
     	$this->warning_msg('wrong_pid');
+        
     }
 	
 	public function index()
@@ -47,14 +48,12 @@ class Rss_Controller extends Template_Controller
 			$page_model = new Page_Model();		
 			
 			$rss_pid = $page_model->get_page_type(array('bbs','blog','album','news'));
-			
 			if (empty($rss_pid)) $list_page = $rss_pid;
 			else
 			{
 				$page_model->set_query('where','page_status',1);
 				$list_page = $page_model->get_page_lang($this->get_client_lang(), $rss_pid,NULL,NULL,'');
 			}
-			
 			$this->template->content->list_page = $list_page;
 		}
 	}
@@ -119,4 +118,17 @@ class Rss_Controller extends Template_Controller
 			$this->warning_msg('wrong_pid');
 		}
 	}
+    
+    public function readrss($id = ''){ //blog || news
+        
+        $url = $this->site['config']['RSS_NEWS_URL'];
+        
+        $arr = $this->rss_model->getRss($url);
+        if(empty($id))
+            echo json_encode(@$arr);
+        else
+            echo json_encode(@$arr[$id]);
+        die();
+    }
+    
 }

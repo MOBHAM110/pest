@@ -18,12 +18,13 @@ class Bbs_Controller extends Template_Controller {
             $this->search = array(
                 'sel_type' => '', 'keyword' => ''
             );
+        $this->rss_model = new Rss_Model();
         $this->_get_session_msg();
         /* --------------------------------------------------------------------------------------------------- */
 
         /* ---------------------------------- Init properties of Controller ---------------------------------- */
         $this->bbs_model = new Bbs_Model();
-        require Kohana::find_file('vendor/feed_xml','xml');
+        //require Kohana::find_file('vendor/feed_xml','xml');
         $this->mr = array_merge($this->mr, $this->page_model->get_page_lang($this->get_client_lang(), $this->page_id));
     }
 
@@ -47,21 +48,30 @@ class Bbs_Controller extends Template_Controller {
                 $this->mr['bbs_content'] = $indata['txt_content'];
         }
     }
-
+    
+    public function check_exist_array($arr,$value){
+        foreach($arr as $item){
+            if($item['id'] == $value)
+                return true;
+        }
+        return false;
+    }
+    
     public function __call($method, $arguments) {
+        $mlist = $this->bbsInit();
         $bbs_id = $this->uri->segment('id');
-        //Check page
+        $akc_status = Configuration_Model::get_value('ENABLE_AKCOMP');
         $bbs = $this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang());
-        //if (!empty($bbs)) {
-            //Check bbs
+        if($akc_status == 1){
             $bbs = $this->bbs_model->get(TRUE, $this->page_id, $bbs_id, $this->get_client_lang());
-            if(Configuration_Model::get_value('ENABLE_AKCOMP')&&$this->page_id==165){
+            
+            if($this->page_id==165){
                 $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
                 $mlist = json_decode($json,true); //$this->print_array($mlist);
                 if(!empty($mlist)){ foreach($mlist as $id => $value){
                     if($bbs_id == $value['bbs_id']) $bbs = $value;
                 }}
-            } else if(Configuration_Model::get_value('ENABLE_AKCOMP')&&$this->page_id==166){
+            } else if($this->page_id==166){
                 $mlist = $this->get_wp();
                 if(!empty($mlist)){ foreach($mlist as $id => $value){
                     if($bbs_id == $value['bbs_id']) $bbs = $value;
@@ -72,9 +82,53 @@ class Bbs_Controller extends Template_Controller {
                 die();
             } elseif ($bbs_id)
                 $this->mr['bbs_id'] = $bbs_id;
-        /*} else
-            $this->warning = 'wrong_pid';*/
-
+        } else if($akc_status == 2) {
+            $newsUrl = Configuration_Model::get_value('RSS_NEWS_URL');
+            $blogUrl = Configuration_Model::get_value('RSS_BLOG_URL');
+            
+            if(!empty($newsUrl)&&$this->page_id==165){
+                $mlist = $this->rss_model->getRss($newsUrl,true);
+                if(!empty($mlist)){ foreach($mlist as $id => $value){
+                    if($bbs_id == $value['id']) $bbs = $value;
+                }}
+            } else if(!empty($blogUrl)&&$this->page_id==166){
+                $mlist = $this->rss_model->getRss($blogUrl,true);
+                if(!empty($mlist)){ 
+                    foreach($mlist as $id => $value){
+                    if($bbs_id == $value['id']) $bbs = $value;
+                }}
+            }  
+            if($bbs_id && !$this->check_exist_array($mlist,'id',$bbs_id)){
+                url::redirect('bbs/pid/' . $this->page_id);
+                die();
+            } elseif ($bbs_id)
+                $this->mr['bbs_id'] = $bbs_id;
+        } else {
+            $this->bbs_model->search($this->search);
+            $this->bbs_model->set_query('where', 'bbs_status', 1);
+            $total_rows = count($this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang()));
+        }
+        
+        $this->pagination = new Pagination(array(
+            'base_url' => 'bbs/pid/' . $this->page_id . '/search',
+            'uri_segment' => 'page',
+            'total_items' => @$total_rows,
+            'items_per_page' => $this->site['config']['CLIENT_NUM_LINE'],
+            'style' => 'digg',
+        ));
+        
+        if($akc_status == 0){
+            $this->bbs_model->set_limit($this->pagination->items_per_page, $this->pagination->sql_offset);		
+            $this->bbs_model->search($this->search);
+            $this->bbs_model->set_query('where', 'bbs_status', 1);
+            $mlist = $this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang());
+        }
+        
+        
+        if(empty($mlist)){
+            $mlist = $this->bbsInit();
+            $this->mr = array_merge($mlist, $this->mr);
+        }
         if (!empty($this->warning)) {
             $this->warning_msg($this->warning);
         } elseif ($method === 'pid') {
@@ -172,8 +226,7 @@ class Bbs_Controller extends Template_Controller {
         die();
     }
 
-    public function compare_pass()
-    {
+    public function compare_pass(){
         $input_pass = $_POST['input_pass'];
         $cur_pass = $_POST['cur_pass'];
         $page_id = $_POST['page_id'];
@@ -275,44 +328,107 @@ class Bbs_Controller extends Template_Controller {
         return $mlist;
     }
     
+    public function bbsInit(){
+        $arr = array(
+            'bbs_id' => '',
+            'bbs_password' => '',
+            'bbs_count' => '',
+            'bbs_download' => '',
+            'bbs_author' => '',
+            'bbs_date_created' => '',
+            'bbs_date_modified' => '',
+            'bbs_order' => '',
+            'bbs_status' => '',
+            'bbs_page_id' => '',
+            'bbs_left' => '',
+            'bbs_right' => '',
+            'bbs_level' => '',
+            'bbs_sort_order' => '',
+            'bbs_content' => '',
+            'bbs_title' => '',
+            'bbs_file' => '',
+            'bbs_date' => ''
+        );
+        return $arr;
+    }
+    
     public function _show_list() {
         $this->template->content = new View('templates/' . $this->site['config']['TEMPLATE'] . '/bbs/list');
+        $mlist = $this->bbsInit();
+        $akc_status = Configuration_Model::get_value('ENABLE_AKCOMP');
+        $newsUrl = Configuration_Model::get_value('RSS_NEWS_URL');
+        $blogUrl = Configuration_Model::get_value('RSS_BLOG_URL');
         
-        if(Configuration_Model::get_value('ENABLE_AKCOMP')&&$this->page_id==165){
-            $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
-            $mlist = json_decode($json,true); //$this->print_array($mlist);
-            $total_rows = count($mlist);
-            $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
-        } else if(Configuration_Model::get_value('ENABLE_AKCOMP')&&$this->page_id==166){
-            $mlist = $this->get_wp();
-            $total_rows = count($mlist);
-            $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+        if($akc_status == 1){
+            if($this->page_id==165){
+                $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
+                $mlist = json_decode($json,true); //$this->print_array($mlist);
+                $total_rows = count($mlist);
+                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+            } else if($this->page_id==166){
+                $mlist = $this->get_wp();
+                $total_rows = count($mlist);
+                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+            } else {
+                $this->bbs_model->search($this->search);
+                $this->bbs_model->set_query('where', 'bbs_status', 1);
+                $total_rows = count($this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang()));
+            }
+            
+            
+        } else if($akc_status == 2 && (!empty($newsUrl)||!empty($blogUrl))){
+            if(!empty($newsUrl) && $this->page_id==165){
+                $mlist = $this->rss_model->getRss($newsUrl,true);
+
+                $total_rows = count($mlist);
+                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+            } else if(!empty($blogUrl) && $this->page_id==166){
+
+                $mlist = $this->rss_model->getRss($blogUrl,true);
+
+                $total_rows = count($mlist);
+                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+            } 
         } else {
             $this->bbs_model->search($this->search);
             $this->bbs_model->set_query('where', 'bbs_status', 1);
             $total_rows = count($this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang()));
         }
+        
         $this->pagination = new Pagination(array(
             'base_url' => 'bbs/pid/' . $this->page_id . '/search',
             'uri_segment' => 'page',
-            'total_items' => $total_rows,
+            'total_items' => @$total_rows,
             'items_per_page' => $this->site['config']['CLIENT_NUM_LINE'],
             'style' => 'digg',
         ));
-        if(!Configuration_Model::get_value('ENABLE_AKCOMP')||($this->page_id!=165&&$this->page_id!=166)){
+        
+        if($akc_status == 0){
             $this->bbs_model->set_limit($this->pagination->items_per_page, $this->pagination->sql_offset);		
             $this->bbs_model->search($this->search);
             $this->bbs_model->set_query('where', 'bbs_status', 1);
             $mlist = $this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang());
         }
+        if(count($mlist) > 0)
         for ($i = 0; $i < count($mlist); $i++) {
-            if (empty($mlist[$i]['bbs_date_created']))
-                $mlist[$i]['bbs_date'] = $mlist[$i]['bbs_date_modified'];
-            else
-                $mlist[$i]['bbs_date'] = $mlist[$i]['bbs_date_created'];
+            if($akc_status < 2){
+                if (empty($mlist[$i]['bbs_date_created']))
+                    $mlist[$i]['bbs_date'] = @$mlist[$i]['bbs_date_modified'];
+                else
+                    $mlist[$i]['bbs_date'] = @$mlist[$i]['bbs_date_created'];
+                $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], $mlist[$i]['bbs_date']);
+                $mlist[$i]['bbs_content'] = @$mlist[$i]['bbs_content'];
+            } else {
+                $mlist[$i]['bbs_date'] = @$mlist[$i]['pubDate'];
+                $mlist[$i]['bbs_author'] = @$mlist[$i]['author'];
+                $mlist[$i]['bbs_level'] = '0';
+                $mlist[$i]['bbs_id'] = @$mlist[$i]['id'];;
+                $mlist[$i]['bbs_title'] = @$mlist[$i]['title'];;
 
-            $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], $mlist[$i]['bbs_date']);
-            $mlist[$i]['bbs_content'] = $mlist[$i]['bbs_content'];
+                $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], strtotime($mlist[$i]['pubDate']));
+                $mlist[$i]['bbs_content'] = @$mlist[$i]['content'];
+            }
+            
 
             if (!empty($this->search['keyword'])) {
                 switch ($this->search['sel_type']) {
@@ -333,7 +449,7 @@ class Bbs_Controller extends Template_Controller {
                 }
             }
 
-            $list_file = ORM::factory('bbs_file_orm')->where('bbs_id', $mlist[$i]['bbs_id'])->orderby('bbs_file_order')->find_all()->as_array();
+            $list_file = ORM::factory('bbs_file_orm')->where('bbs_id', @$mlist[$i]['bbs_id'])->orderby('bbs_file_order')->find_all()->as_array();
 
             $mlist[$i]['bbs_file'] = empty($list_file[0]->bbs_file_name) ? array() : $list_file;
 
@@ -341,6 +457,7 @@ class Bbs_Controller extends Template_Controller {
                 $this->mr = array_merge($this->mr, $mlist[$i]);
             }
         }
+        
         $this->session->set_flash('sess_bbs', $this->search); // session important		
 
         if (!isset($this->mr['bbs_id']) && !empty($mlist)) {
@@ -349,8 +466,11 @@ class Bbs_Controller extends Template_Controller {
 
         if ($this->session->get('sess_bbs_pass'))
             $this->mr['bbs_password'] = '';
-
         $this->bbs_model->increase_count(@$this->mr['bbs_id']);
+//        $mlist = $this->bbsInit();
+//        $this->mr = array_merge($this->mr,$mlist);
+//        var_dump($mlist);
+//        var_dump($this->mr); die();
         $this->template->content->mlist = $mlist;
         $this->template->content->mr = $this->mr;
     }
@@ -452,7 +572,7 @@ class Bbs_Controller extends Template_Controller {
         $msg = array('error' => '', 'success' => '');
 
         $frm_bbs = $this->_get_frm_valid($bbs_id);
-
+        //var_dump($frm_bbs); die();
         $set = array(
             'bbs_page_id' => $this->mr['page_id'],
             'bbs_author' => empty($this->sess_cus['username']) ? $frm_bbs['txt_name'] : $this->sess_cus['username'],

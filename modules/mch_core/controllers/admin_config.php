@@ -73,7 +73,9 @@ class Admin_config_Controller extends Template_Controller {
             'sel_support_frm' => '',
             'sel_google_calendar' => '',
             'sel_target_menu' => '',
-			'sel_akcomp' => ''
+			'sel_akcomp' => '',
+			'txt_rss_news_url' => '',
+			'txt_rss_blog_url' => ''
         );
 
         for ($i = 1; $i <= 15; $i++) {
@@ -155,7 +157,9 @@ class Admin_config_Controller extends Template_Controller {
             'FORMAT_LONG_DATE' => $frm['txt_long_date'],
             'DEF_SREG' => $frm['sel_df_sreg'],
             'TARGET_MENU' => $frm['sel_target_menu'],
-			'ENABLE_AKCOMP' => $frm['sel_akcomp']	
+			'ENABLE_AKCOMP' => $frm['sel_akcomp'],
+			'RSS_NEWS_URL' => $frm['txt_rss_news_url'],
+			'RSS_BLOG_URL' => $frm['txt_rss_blog_url']	
         );
         for ($i = 1; $i <= 15; $i++) {
             if ($i == 2)
