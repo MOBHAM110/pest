@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.4.9
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 12, 2012 at 09:54 AM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Host: localhost
+-- Generation Time: Oct 12, 2012 at 05:09 PM
+-- Server version: 5.1.33
+-- PHP Version: 5.2.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `pest`
+-- Database: `mch_pest`
 --
 
 -- --------------------------------------------------------
@@ -221,8 +221,8 @@ INSERT INTO `configuration` (`configuration_id`, `configuration_title`, `configu
 (38, 'Enable Comment', 'ENABLE_COMMENT', '1', '1:Enable, 0:Disable', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (39, 'Banner Center', 'BANNER_CENTER', 'order', '', 0, NULL, NULL, '2012-04-12 00:00:00', NULL, NULL),
 (40, 'Enable Akcomp', 'ENABLE_AKCOMP', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
-(41, 'RSS NEWS', 'RSS_NEWS_URL', 'http://news.zing.vn/rss/doi-song/tu-thien.html', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
-(42, 'RSS BLOG', 'RSS_BLOG_URL', 'http://vnexpress.net/rss/gl/xa-hoi.rss', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL);
+(41, 'RSS NEWS', 'RSS_NEWS_URL', 'http://', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
+(42, 'RSS BLOG', 'RSS_BLOG_URL', 'http://', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -839,7 +839,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('9e925197dee265d4fc2dbd335769b749', 1349324392, 'c2Vzc2lvbl9pZHxzOjMyOiI5ZTkyNTE5N2RlZTI2NWQ0ZmMyZGJkMzM1NzY5Yjc0OSI7dG90YWxfaGl0c3xpOjEwMTtfa2ZfZmxhc2hffGE6MDp7fXVzZXJfYWdlbnR8czo5OToiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuNCAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8yMi4wLjEyMjkuNzkgU2FmYXJpLzUzNy40IjtpcF9hZGRyZXNzfHM6OToiMTI3LjAuMC4xIjtsYXN0X2FjdGl2aXR5fGk6MTM0OTMyNDM5MDtzZXNzX2hpc19hZG1pbnxhOjI6e3M6NDoiYmFjayI7czozMDoiYWRtaW5fdGhlbWVzL2NoYW5nZV9kZWZhdWx0LzEwIjtzOjc6ImN1cnJlbnQiO3M6MTI6ImFkbWluX3RoZW1lcyI7fXNlc3NfYWRtaW5fbGFuZ3xzOjE6IjEiO3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoyMjoiaHR0cDovL2xvY2FsaG9zdC9wZXN0LyI7czo3OiJjdXJyZW50IjtzOjQ6ImhvbWUiO31zZXNzX3JvbGV8TjtzZXNzX2FkbWlufGE6NTp7czoyOiJpZCI7czoxOiIxIjtzOjU6ImxldmVsIjtzOjE6IjEiO3M6ODoidXNlcm5hbWUiO3M6MTA6InN1cGVyYWRtaW4iO3M6NToiZW1haWwiO3M6MjA6Imxlb0B0ZWNoa25vd2xlZGdlLnZuIjtzOjQ6InJvbGUiO3M6MToiMCI7fQ==');
+('fa6fefe91c91db34714ddaae4f2f0da5', 1350032978, 'c2Vzc2lvbl9pZHxzOjMyOiJmYTZmZWZlOTFjOTFkYjM0NzE0ZGRhYWU0ZjJmMGRhNSI7dG90YWxfaGl0c3xpOjIzO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy40IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIyLjAuMTIyOS45NCBTYWZhcmkvNTM3LjQiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzUwMDMyOTc1O3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoxMToiYmJzL3BpZC8xNjUiO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9c2Vzc19oaXNfYWRtaW58YToyOntzOjQ6ImJhY2siO3M6MTM6ImFkbWluX2FjY291bnQiO3M6NzoiY3VycmVudCI7czoxMjoiYWRtaW5fY29uZmlnIjt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO30=');
 
 -- --------------------------------------------------------
 
