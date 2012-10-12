@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 04, 2012 at 12:21 PM
--- Server version: 5.1.33
--- PHP Version: 5.2.9
+-- Host: 127.0.0.1
+-- Generation Time: Oct 12, 2012 at 09:54 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `mch_pest`
+-- Database: `pest`
 --
 
 -- --------------------------------------------------------
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `configuration` (
   UNIQUE KEY `unq_config_key_zen` (`configuration_key`),
   KEY `idx_key_value_zen` (`configuration_key`,`configuration_value`(10)),
   KEY `idx_cfg_grp_id_zen` (`configuration_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `configuration`
@@ -220,7 +220,9 @@ INSERT INTO `configuration` (`configuration_id`, `configuration_title`, `configu
 (37, 'Max Height Banner Admin List', 'MAX_HEIGHT_BANNER_ADMIN_LIST', '60', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (38, 'Enable Comment', 'ENABLE_COMMENT', '1', '1:Enable, 0:Disable', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
 (39, 'Banner Center', 'BANNER_CENTER', 'order', '', 0, NULL, NULL, '2012-04-12 00:00:00', NULL, NULL),
-(40, 'Enable Akcomp', 'ENABLE_AKCOMP', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL);
+(40, 'Enable Akcomp', 'ENABLE_AKCOMP', '1', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
+(41, 'RSS NEWS', 'RSS_NEWS_URL', 'http://news.zing.vn/rss/doi-song/tu-thien.html', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL),
+(42, 'RSS BLOG', 'RSS_BLOG_URL', 'http://vnexpress.net/rss/gl/xa-hoi.rss', '', 0, NULL, NULL, '0001-01-01 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
