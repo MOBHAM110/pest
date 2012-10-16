@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
+-- version 3.0.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 12, 2012 at 05:09 PM
--- Server version: 5.1.33
--- PHP Version: 5.2.9
+-- Generation Time: Oct 16, 2012 at 11:57 AM
+-- Server version: 5.0.67
+-- PHP Version: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `mch_pest`
+-- Database: `tshop_pest`
 --
 
 -- --------------------------------------------------------
@@ -27,13 +26,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
-  `admin_status_online` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 : Online | 0 : Offline',
-  `admin_login_last` int(20) NOT NULL DEFAULT '0',
-  `admin_active_last` int(20) NOT NULL DEFAULT '0',
+  `admin_status_online` tinyint(1) NOT NULL default '0' COMMENT '1 : Online | 0 : Offline',
+  `admin_login_last` int(20) NOT NULL default '0',
+  `admin_active_last` int(20) NOT NULL default '0',
   `admin_log_sessid` text,
-  PRIMARY KEY (`admin_id`)
+  PRIMARY KEY  (`admin_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=34 ;
 
 --
@@ -51,7 +50,7 @@ INSERT INTO `admin` (`admin_id`, `user_id`, `admin_status_online`, `admin_login_
 --
 
 CREATE TABLE IF NOT EXISTS `banner` (
-  `banner_id` int(11) NOT NULL AUTO_INCREMENT,
+  `banner_id` int(11) NOT NULL auto_increment,
   `banner_file` text,
   `file_type_id` int(11) NOT NULL,
   `banner_link` text,
@@ -59,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `banner` (
   `banner_width` int(5) NOT NULL,
   `banner_height` int(5) NOT NULL,
   `banner_alt` text,
-  PRIMARY KEY (`banner_id`)
+  PRIMARY KEY  (`banner_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
 
 --
@@ -77,21 +76,21 @@ INSERT INTO `banner` (`banner_id`, `banner_file`, `file_type_id`, `banner_link`,
 --
 
 CREATE TABLE IF NOT EXISTS `bbs` (
-  `bbs_id` int(11) NOT NULL AUTO_INCREMENT,
-  `bbs_password` varchar(200) DEFAULT NULL,
-  `bbs_count` int(11) DEFAULT '1',
+  `bbs_id` int(11) NOT NULL auto_increment,
+  `bbs_password` varchar(200) default NULL,
+  `bbs_count` int(11) default '1',
   `bbs_download` int(11) NOT NULL,
-  `bbs_author` varchar(50) DEFAULT NULL,
-  `bbs_date_created` int(11) DEFAULT NULL,
-  `bbs_date_modified` int(11) DEFAULT NULL,
+  `bbs_author` varchar(50) default NULL,
+  `bbs_date_created` int(11) default NULL,
+  `bbs_date_modified` int(11) default NULL,
   `bbs_order` int(11) NOT NULL,
-  `bbs_status` tinyint(1) NOT NULL DEFAULT '1',
-  `bbs_page_id` int(11) NOT NULL DEFAULT '0',
-  `bbs_left` int(11) DEFAULT '0',
-  `bbs_right` int(11) DEFAULT '0',
-  `bbs_level` int(11) DEFAULT '0',
-  `bbs_sort_order` int(11) DEFAULT NULL,
-  PRIMARY KEY (`bbs_id`)
+  `bbs_status` tinyint(1) NOT NULL default '1',
+  `bbs_page_id` int(11) NOT NULL default '0',
+  `bbs_left` int(11) default '0',
+  `bbs_right` int(11) default '0',
+  `bbs_level` int(11) default '0',
+  `bbs_sort_order` int(11) default NULL,
+  PRIMARY KEY  (`bbs_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
 
 --
@@ -114,6 +113,11 @@ CREATE TABLE IF NOT EXISTS `bbs_content` (
   `bbs_content` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
+--
+-- Dumping data for table `bbs_content`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -121,16 +125,21 @@ CREATE TABLE IF NOT EXISTS `bbs_content` (
 --
 
 CREATE TABLE IF NOT EXISTS `bbs_file` (
-  `bbs_file_id` int(11) NOT NULL AUTO_INCREMENT,
+  `bbs_file_id` int(11) NOT NULL auto_increment,
   `bbs_id` int(11) NOT NULL,
   `file_type_id` tinyint(11) NOT NULL,
   `bbs_file_name` text NOT NULL,
   `bbs_file_description` text,
   `bbs_file_date_created` int(20) NOT NULL,
-  `bbs_file_download` int(20) NOT NULL DEFAULT '0',
+  `bbs_file_download` int(20) NOT NULL default '0',
   `bbs_file_order` int(11) NOT NULL,
-  PRIMARY KEY (`bbs_file_id`)
+  PRIMARY KEY  (`bbs_file_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `bbs_file`
+--
+
 
 -- --------------------------------------------------------
 
@@ -139,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `bbs_file` (
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_id` int(11) NOT NULL auto_increment,
   `bbs_id` int(11) NOT NULL,
   `page_type_name` varchar(255) NOT NULL,
   `page_id` int(11) NOT NULL,
@@ -149,8 +158,13 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment_author` varchar(20) NOT NULL,
   `comment_email` varchar(100) NOT NULL,
   `comment_status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`comment_id`)
+  PRIMARY KEY  (`comment_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `comment`
+--
+
 
 -- --------------------------------------------------------
 
@@ -159,18 +173,18 @@ CREATE TABLE IF NOT EXISTS `comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `configuration` (
-  `configuration_id` int(11) NOT NULL AUTO_INCREMENT,
+  `configuration_id` int(11) NOT NULL auto_increment,
   `configuration_title` text NOT NULL,
   `configuration_key` varchar(255) NOT NULL,
   `configuration_value` text NOT NULL,
   `configuration_description` text NOT NULL,
-  `configuration_group_id` int(11) NOT NULL DEFAULT '0',
-  `configuration_sort_order` int(5) DEFAULT NULL,
-  `configuration_last_modified` datetime DEFAULT NULL,
-  `configuration_date_added` datetime NOT NULL DEFAULT '0001-01-01 00:00:00',
+  `configuration_group_id` int(11) NOT NULL default '0',
+  `configuration_sort_order` int(5) default NULL,
+  `configuration_last_modified` datetime default NULL,
+  `configuration_date_added` datetime NOT NULL default '0001-01-01 00:00:00',
   `configuration_use_function` text,
   `configuration_set_function` text,
-  PRIMARY KEY (`configuration_id`),
+  PRIMARY KEY  (`configuration_id`),
   UNIQUE KEY `unq_config_key_zen` (`configuration_key`),
   KEY `idx_key_value_zen` (`configuration_key`,`configuration_value`(10)),
   KEY `idx_cfg_grp_id_zen` (`configuration_group_id`)
@@ -231,15 +245,15 @@ INSERT INTO `configuration` (`configuration_id`, `configuration_title`, `configu
 --
 
 CREATE TABLE IF NOT EXISTS `contact` (
-  `contact_id` tinyint(1) NOT NULL AUTO_INCREMENT,
-  `contact_email` tinyint(1) NOT NULL DEFAULT '1',
-  `contact_address` tinyint(1) NOT NULL DEFAULT '1',
-  `contact_city` tinyint(1) NOT NULL DEFAULT '1',
-  `contact_state` tinyint(1) NOT NULL DEFAULT '1',
-  `contact_zipcode` tinyint(1) NOT NULL DEFAULT '1',
-  `contact_phone` tinyint(1) NOT NULL DEFAULT '1',
-  `contact_fax` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`contact_id`)
+  `contact_id` tinyint(1) NOT NULL auto_increment,
+  `contact_email` tinyint(1) NOT NULL default '1',
+  `contact_address` tinyint(1) NOT NULL default '1',
+  `contact_city` tinyint(1) NOT NULL default '1',
+  `contact_state` tinyint(1) NOT NULL default '1',
+  `contact_zipcode` tinyint(1) NOT NULL default '1',
+  `contact_phone` tinyint(1) NOT NULL default '1',
+  `contact_fax` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`contact_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED AUTO_INCREMENT=2 ;
 
 --
@@ -256,29 +270,34 @@ INSERT INTO `contact` (`contact_id`, `contact_email`, `contact_address`, `contac
 --
 
 CREATE TABLE IF NOT EXISTS `customers` (
-  `customers_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customers_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
-  `customers_name` varchar(255) DEFAULT NULL,
-  `customers_no` varchar(255) DEFAULT NULL,
+  `customers_name` varchar(255) default NULL,
+  `customers_no` varchar(255) default NULL,
   `customers_firstname` varchar(32) NOT NULL,
   `customers_lastname` varchar(32) NOT NULL,
   `customers_nick` varchar(96) NOT NULL,
-  `customers_address` varchar(255) DEFAULT NULL,
-  `customers_address2` varchar(255) DEFAULT NULL,
-  `customers_city` varchar(255) DEFAULT NULL,
-  `customers_state` varchar(255) DEFAULT NULL,
-  `customers_zipcode` varchar(255) DEFAULT NULL,
+  `customers_address` varchar(255) default NULL,
+  `customers_address2` varchar(255) default NULL,
+  `customers_city` varchar(255) default NULL,
+  `customers_state` varchar(255) default NULL,
+  `customers_zipcode` varchar(255) default NULL,
   `customers_phone` varchar(32) NOT NULL,
-  `customers_cellphone` varchar(32) DEFAULT NULL,
-  `customers_fax` varchar(32) DEFAULT NULL,
-  `customers_newsletter` char(1) DEFAULT NULL,
+  `customers_cellphone` varchar(32) default NULL,
+  `customers_fax` varchar(32) default NULL,
+  `customers_newsletter` char(1) default NULL,
   `customers_type` tinyint(4) NOT NULL COMMENT '0:General,1:Wholesaler',
-  `customers_point` int(11) DEFAULT NULL,
-  `customers_account_no` varchar(255) DEFAULT NULL,
-  `customers_company` varchar(255) DEFAULT NULL,
+  `customers_point` int(11) default NULL,
+  `customers_account_no` varchar(255) default NULL,
+  `customers_company` varchar(255) default NULL,
   `customers_note` text,
-  PRIMARY KEY (`customers_id`)
+  PRIMARY KEY  (`customers_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `customers`
+--
+
 
 -- --------------------------------------------------------
 
@@ -287,19 +306,19 @@ CREATE TABLE IF NOT EXISTS `customers` (
 --
 
 CREATE TABLE IF NOT EXISTS `data_template` (
-  `configuration_id` int(11) NOT NULL AUTO_INCREMENT,
-  `languages_id` int(11) DEFAULT NULL,
+  `configuration_id` int(11) NOT NULL auto_increment,
+  `languages_id` int(11) default NULL,
   `configuration_title` text,
-  `configuration_key` varchar(255) DEFAULT NULL,
+  `configuration_key` varchar(255) default NULL,
   `configuration_value` text NOT NULL,
   `configuration_description` text,
-  `configuration_group_id` int(11) DEFAULT '0',
-  `configuration_sort_order` int(5) DEFAULT NULL,
-  `configuration_last_modified` datetime DEFAULT NULL,
-  `configuration_date_added` datetime DEFAULT '0001-01-01 00:00:00',
+  `configuration_group_id` int(11) default '0',
+  `configuration_sort_order` int(5) default NULL,
+  `configuration_last_modified` datetime default NULL,
+  `configuration_date_added` datetime default '0001-01-01 00:00:00',
   `configuration_use_function` text,
   `configuration_set_function` text,
-  PRIMARY KEY (`configuration_id`)
+  PRIMARY KEY  (`configuration_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=10 ;
 
 --
@@ -324,10 +343,10 @@ INSERT INTO `data_template` (`configuration_id`, `languages_id`, `configuration_
 --
 
 CREATE TABLE IF NOT EXISTS `file_type` (
-  `file_type_id` tinyint(11) NOT NULL AUTO_INCREMENT,
+  `file_type_id` tinyint(11) NOT NULL auto_increment,
   `file_type_detail` varchar(50) NOT NULL,
   `file_type_ext` varchar(50) NOT NULL,
-  PRIMARY KEY (`file_type_id`)
+  PRIMARY KEY  (`file_type_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=9 ;
 
 --
@@ -351,12 +370,12 @@ INSERT INTO `file_type` (`file_type_id`, `file_type_detail`, `file_type_ext`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `footer` (
-  `footer_id` tinyint(11) NOT NULL AUTO_INCREMENT,
+  `footer_id` tinyint(11) NOT NULL auto_increment,
   `footer_type` tinyint(1) NOT NULL COMMENT '0:general| 1:image fullt | 2:image component | 3:flash',
   `footer_image` text,
   `footer_flash` text,
   `footer_content` text NOT NULL,
-  PRIMARY KEY (`footer_id`)
+  PRIMARY KEY  (`footer_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
 
 --
@@ -374,7 +393,7 @@ INSERT INTO `footer` (`footer_id`, `footer_type`, `footer_image`, `footer_flash`
 
 CREATE TABLE IF NOT EXISTS `header` (
   `page_id` tinyint(11) NOT NULL,
-  `header_type` tinyint(4) DEFAULT '2' COMMENT '0:General,1:image fullt,2:image component,3:flash',
+  `header_type` tinyint(4) default '2' COMMENT '0:General,1:image fullt,2:image component,3:flash',
   `header_content` text,
   `header_image` text,
   `header_flash` text
@@ -394,12 +413,12 @@ INSERT INTO `header` (`page_id`, `header_type`, `header_content`, `header_image`
 --
 
 CREATE TABLE IF NOT EXISTS `home` (
-  `home_id` int(11) NOT NULL AUTO_INCREMENT,
+  `home_id` int(11) NOT NULL auto_increment,
   `page_id` int(11) NOT NULL,
   `home_row` tinyint(5) NOT NULL,
   `home_col` tinyint(1) NOT NULL,
   `num_row` tinyint(4) NOT NULL,
-  PRIMARY KEY (`home_id`)
+  PRIMARY KEY  (`home_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED AUTO_INCREMENT=144 ;
 
 --
@@ -417,14 +436,14 @@ INSERT INTO `home` (`home_id`, `page_id`, `home_row`, `home_col`, `num_row`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `languages` (
-  `languages_id` int(11) NOT NULL AUTO_INCREMENT,
-  `languages_name` varchar(32) DEFAULT NULL,
-  `languages_code` char(10) DEFAULT NULL,
-  `languages_charset` varchar(255) DEFAULT NULL,
-  `languages_image` varchar(64) DEFAULT NULL,
-  `languages_status` tinyint(4) DEFAULT NULL,
-  `languages_sort_order` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`languages_id`),
+  `languages_id` int(11) NOT NULL auto_increment,
+  `languages_name` varchar(32) default NULL,
+  `languages_code` char(10) default NULL,
+  `languages_charset` varchar(255) default NULL,
+  `languages_image` varchar(64) default NULL,
+  `languages_status` tinyint(4) default NULL,
+  `languages_sort_order` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`languages_id`),
   KEY `idx_languages_name_zen` (`languages_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=8 ;
 
@@ -444,22 +463,22 @@ INSERT INTO `languages` (`languages_id`, `languages_name`, `languages_code`, `la
 --
 
 CREATE TABLE IF NOT EXISTS `menu_categories` (
-  `menu_categories_id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu_categories_image` varchar(64) DEFAULT NULL,
-  `menu_categories_link` varchar(64) DEFAULT NULL,
-  `menu_categories_parent_id` int(11) DEFAULT '0',
-  `menu_categories_sort_order` int(3) DEFAULT NULL,
-  `menu_categories_date_added` datetime DEFAULT NULL,
-  `menu_categories_last_modified` datetime DEFAULT NULL,
-  `menu_categories_status` tinyint(1) DEFAULT '1',
-  `menu_categories_pid` int(11) DEFAULT NULL,
-  `menu_categories_gid` int(11) DEFAULT NULL,
-  `menu_categories_level` tinyint(4) DEFAULT NULL,
-  `menu_categories_path` varchar(255) DEFAULT NULL,
-  `menu_categories_left` int(11) DEFAULT NULL,
-  `menu_categories_right` int(11) DEFAULT NULL,
-  PRIMARY KEY (`menu_categories_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=50 ;
+  `menu_categories_id` int(11) NOT NULL auto_increment,
+  `menu_categories_image` varchar(64) default NULL,
+  `menu_categories_link` varchar(64) default NULL,
+  `menu_categories_parent_id` int(11) default '0',
+  `menu_categories_sort_order` int(3) default NULL,
+  `menu_categories_date_added` datetime default NULL,
+  `menu_categories_last_modified` datetime default NULL,
+  `menu_categories_status` tinyint(1) default '1',
+  `menu_categories_pid` int(11) default NULL,
+  `menu_categories_gid` int(11) default NULL,
+  `menu_categories_level` tinyint(4) default NULL,
+  `menu_categories_path` varchar(255) default NULL,
+  `menu_categories_left` int(11) default NULL,
+  `menu_categories_right` int(11) default NULL,
+  PRIMARY KEY  (`menu_categories_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `menu_categories`
@@ -475,14 +494,14 @@ INSERT INTO `menu_categories` (`menu_categories_id`, `menu_categories_image`, `m
 (39, '', 'admin_page/view/mptt', 38, NULL, NULL, NULL, 0, 38, NULL, 2, '38|39|', 11, 12),
 (40, '', 'admin_page/view/list', 38, NULL, NULL, NULL, 0, 38, NULL, 2, '38|40|', 13, 14),
 (41, '', 'admin_banner', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '41|', 16, 17),
-(42, '', '', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '42|', 18, 27),
-(43, '', 'admin_language', 42, NULL, NULL, NULL, 0, 42, NULL, 2, '42|43|', 25, 26),
+(42, '', '', 1, NULL, NULL, NULL, 1, 1, NULL, 1, '42|', 18, 33),
+(43, '', 'admin_language', 42, NULL, NULL, NULL, 0, 42, NULL, 2, '42|43|', 31, 32),
 (44, '', 'admin_config', 42, NULL, NULL, NULL, 1, 42, NULL, 2, '42|44|', 19, 20),
-(45, '', 'admin_templates', 42, NULL, NULL, NULL, 0, 42, NULL, 2, '42|45|', 23, 24),
+(45, '', 'admin_templates', 42, NULL, NULL, NULL, 0, 42, NULL, 2, '42|45|', 29, 30),
 (46, '', 'admin_themes', 42, NULL, NULL, NULL, 1, 42, NULL, 2, '42|46|', 21, 22),
-(47, '', '', 1, NULL, NULL, NULL, 0, 1, NULL, 1, '47|', 28, 33),
-(48, '', 'admin_backup_file', 47, NULL, NULL, NULL, 1, 47, NULL, 2, '47|48|', 31, 32),
-(49, '', 'admin_backup_db', 47, NULL, NULL, NULL, 1, 47, NULL, 2, '47|49|', 29, 30);
+(48, '', 'admin_backup_file', 50, NULL, NULL, NULL, 1, 50, NULL, 3, '42|50|48|', 26, 27),
+(49, '', 'admin_backup_db', 50, NULL, NULL, NULL, 1, 50, NULL, 3, '42|50|49|', 24, 25),
+(50, '', '', 42, NULL, NULL, NULL, 1, 42, NULL, 2, '42|50|', 23, 28);
 
 -- --------------------------------------------------------
 
@@ -491,13 +510,13 @@ INSERT INTO `menu_categories` (`menu_categories_id`, `menu_categories_image`, `m
 --
 
 CREATE TABLE IF NOT EXISTS `menu_categories_description` (
-  `menu_categories_description_id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu_categories_id` int(11) DEFAULT '0',
-  `languages_id` int(11) DEFAULT '1',
-  `menu_categories_name` varchar(32) DEFAULT NULL,
+  `menu_categories_description_id` int(11) NOT NULL auto_increment,
+  `menu_categories_id` int(11) default '0',
+  `languages_id` int(11) default '1',
+  `menu_categories_name` varchar(32) default NULL,
   `menu_categories_description` text,
-  PRIMARY KEY (`menu_categories_description_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=80 ;
+  PRIMARY KEY  (`menu_categories_description_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=81 ;
 
 --
 -- Dumping data for table `menu_categories_description`
@@ -517,9 +536,8 @@ INSERT INTO `menu_categories_description` (`menu_categories_description_id`, `me
 (42, 44, 1, 'Website', ''),
 (43, 45, 1, 'Templates', ''),
 (44, 46, 1, 'Themes', ''),
-(45, 47, 1, 'Backup - Update', ''),
-(46, 48, 1, 'Backup File', ''),
-(47, 49, 1, 'Backup Database', ''),
+(46, 48, 1, 'Files', ''),
+(47, 49, 1, 'Database', ''),
 (48, 34, 2, 'Quản lý Tài khoản', ''),
 (49, 34, 3, '계정관리', ''),
 (50, 35, 2, 'Quản trị', ''),
@@ -542,8 +560,7 @@ INSERT INTO `menu_categories_description` (`menu_categories_description_id`, `me
 (67, 46, 3, '테마', ''),
 (68, 43, 2, 'Ngôn ngữ', ''),
 (69, 43, 3, '언어', ''),
-(70, 47, 2, 'Sao lưu - Cập nhật', ''),
-(71, 47, 3, '백업 - 업데이트', ''),
+(80, 50, 1, 'Backup', ''),
 (72, 45, 2, 'Bản mẫu', ''),
 (73, 45, 3, 'Templates', ''),
 (74, 49, 2, 'Sao lưu Dữ liệu', ''),
@@ -560,20 +577,20 @@ INSERT INTO `menu_categories_description` (`menu_categories_description_id`, `me
 --
 
 CREATE TABLE IF NOT EXISTS `page` (
-  `page_id` int(11) NOT NULL AUTO_INCREMENT,
-  `page_title_seo` varchar(255) DEFAULT NULL,
-  `page_keyword` varchar(200) DEFAULT NULL,
+  `page_id` int(11) NOT NULL auto_increment,
+  `page_title_seo` varchar(255) default NULL,
+  `page_keyword` varchar(200) default NULL,
   `page_description` text,
-  `page_status` tinyint(1) DEFAULT '0',
-  `page_read_permission` tinyint(1) NOT NULL DEFAULT '5' COMMENT '1 : Super admin | 2 : Admin | 3 : Staff | 4 : Register | 5 : Everybody',
-  `page_write_permission` tinyint(2) NOT NULL DEFAULT '2' COMMENT '1 : Super admin | 2 : Admin | 3 : Staff | 4 : Register | 5 : Everybody',
+  `page_status` tinyint(1) default '0',
+  `page_read_permission` tinyint(1) NOT NULL default '5' COMMENT '1 : Super admin | 2 : Admin | 3 : Staff | 4 : Register | 5 : Everybody',
+  `page_write_permission` tinyint(2) NOT NULL default '2' COMMENT '1 : Super admin | 2 : Admin | 3 : Staff | 4 : Register | 5 : Everybody',
   `page_type_id` int(11) NOT NULL,
   `page_level` tinyint(1) NOT NULL,
   `page_left` int(11) NOT NULL,
   `page_right` int(11) NOT NULL,
   `page_order` int(11) NOT NULL,
-  `page_target` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`page_id`)
+  `page_target` varchar(200) default NULL,
+  PRIMARY KEY  (`page_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=167 ;
 
 --
@@ -673,39 +690,39 @@ INSERT INTO `page_description` (`page_id`, `languages_id`, `page_title`, `page_c
 
 CREATE TABLE IF NOT EXISTS `page_layout` (
   `page_id` int(11) NOT NULL,
-  `center_banner` varchar(200) DEFAULT NULL,
-  `center_top_banner` varchar(200) DEFAULT NULL,
-  `center_bottom_banner` varchar(200) DEFAULT NULL,
-  `center_banner_order` tinyint(1) NOT NULL DEFAULT '2',
-  `content_center_order` tinyint(1) NOT NULL DEFAULT '1',
+  `center_banner` varchar(200) default NULL,
+  `center_top_banner` varchar(200) default NULL,
+  `center_bottom_banner` varchar(200) default NULL,
+  `center_banner_order` tinyint(1) NOT NULL default '2',
+  `content_center_order` tinyint(1) NOT NULL default '1',
   `top_menu` text NOT NULL,
-  `top_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
+  `top_menu_level` tinyint(1) NOT NULL default '0' COMMENT '0 : multi menu | n : level of menu',
   `center_menu` text NOT NULL,
-  `center_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
-  `top_banner` varchar(200) DEFAULT NULL,
-  `top_T_banner` varchar(255) DEFAULT NULL,
-  `top_B_banner` varchar(255) DEFAULT NULL,
-  `top_banner_order` tinyint(1) NOT NULL DEFAULT '2',
-  `center_menu_order` tinyint(11) NOT NULL DEFAULT '1',
+  `center_menu_level` tinyint(1) NOT NULL default '0' COMMENT '0 : multi menu | n : level of menu',
+  `top_banner` varchar(200) default NULL,
+  `top_T_banner` varchar(255) default NULL,
+  `top_B_banner` varchar(255) default NULL,
+  `top_banner_order` tinyint(1) NOT NULL default '2',
+  `center_menu_order` tinyint(11) NOT NULL default '1',
   `left_menu` text NOT NULL,
-  `left_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
-  `left_banner` varchar(200) DEFAULT NULL,
-  `left_T_banner` varchar(255) DEFAULT NULL,
-  `left_B_banner` varchar(255) DEFAULT NULL,
-  `left_banner_order` tinyint(1) NOT NULL DEFAULT '2',
-  `left_menu_order` tinyint(1) NOT NULL DEFAULT '1',
+  `left_menu_level` tinyint(1) NOT NULL default '0' COMMENT '0 : multi menu | n : level of menu',
+  `left_banner` varchar(200) default NULL,
+  `left_T_banner` varchar(255) default NULL,
+  `left_B_banner` varchar(255) default NULL,
+  `left_banner_order` tinyint(1) NOT NULL default '2',
+  `left_menu_order` tinyint(1) NOT NULL default '1',
   `right_menu` text NOT NULL,
-  `right_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
-  `right_banner` varchar(200) DEFAULT NULL,
-  `right_T_banner` varchar(255) DEFAULT NULL,
-  `right_B_banner` varchar(255) DEFAULT NULL,
-  `right_banner_order` tinyint(1) NOT NULL DEFAULT '2',
-  `right_menu_order` tinyint(1) NOT NULL DEFAULT '1',
-  `bottom_banner` varchar(200) DEFAULT NULL,
+  `right_menu_level` tinyint(1) NOT NULL default '0' COMMENT '0 : multi menu | n : level of menu',
+  `right_banner` varchar(200) default NULL,
+  `right_T_banner` varchar(255) default NULL,
+  `right_B_banner` varchar(255) default NULL,
+  `right_banner_order` tinyint(1) NOT NULL default '2',
+  `right_menu_order` tinyint(1) NOT NULL default '1',
+  `bottom_banner` varchar(200) default NULL,
   `bottom_menu` text NOT NULL,
-  `bottom_menu_level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : multi menu | n : level of menu',
-  `left_outside_banner` varchar(200) DEFAULT NULL,
-  `right_outside_banner` varchar(200) DEFAULT NULL,
+  `bottom_menu_level` tinyint(1) NOT NULL default '0' COMMENT '0 : multi menu | n : level of menu',
+  `left_outside_banner` varchar(200) default NULL,
+  `right_outside_banner` varchar(200) default NULL,
   `left_col` tinyint(4) NOT NULL COMMENT '1: Enable | 0: Disable',
   `right_col` tinyint(4) NOT NULL COMMENT '1: Enable | 0: Disable'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -725,10 +742,10 @@ INSERT INTO `page_layout` (`page_id`, `center_banner`, `center_top_banner`, `cen
 
 CREATE TABLE IF NOT EXISTS `page_type` (
   `page_type_name` varchar(50) NOT NULL,
-  `page_type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `page_type_special` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 : normal | 1 : Special',
-  `page_type_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 : active | 0 : inactive',
-  PRIMARY KEY (`page_type_id`)
+  `page_type_id` int(11) NOT NULL auto_increment,
+  `page_type_special` tinyint(1) NOT NULL default '0' COMMENT '0 : normal | 1 : Special',
+  `page_type_status` tinyint(1) NOT NULL default '1' COMMENT '1 : active | 0 : inactive',
+  PRIMARY KEY  (`page_type_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=20 ;
 
 --
@@ -759,12 +776,12 @@ INSERT INTO `page_type` (`page_type_name`, `page_type_id`, `page_type_special`, 
 --
 
 CREATE TABLE IF NOT EXISTS `permissions` (
-  `permissions_id` int(11) NOT NULL AUTO_INCREMENT,
+  `permissions_id` int(11) NOT NULL auto_increment,
   `permissions_code` varchar(255) NOT NULL,
   `permissions_name` varchar(255) NOT NULL,
-  `permissions_status` int(1) DEFAULT '1' COMMENT '1:active|0:inactive',
+  `permissions_status` int(1) default '1' COMMENT '1:active|0:inactive',
   `permissions_order` int(11) NOT NULL,
-  PRIMARY KEY (`permissions_id`)
+  PRIMARY KEY  (`permissions_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
@@ -794,10 +811,10 @@ INSERT INTO `permissions` (`permissions_id`, `permissions_code`, `permissions_na
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(255) DEFAULT NULL,
-  `role_status` int(1) NOT NULL DEFAULT '1' COMMENT '1:active|0:inactive',
-  PRIMARY KEY (`role_id`)
+  `role_id` int(11) NOT NULL auto_increment,
+  `role_name` varchar(255) default NULL,
+  `role_status` int(1) NOT NULL default '1' COMMENT '1:active|0:inactive',
+  PRIMARY KEY  (`role_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -814,12 +831,17 @@ INSERT INTO `role` (`role_id`, `role_name`, `role_status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `role_perms` (
-  `role_perms_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_perms_id` int(11) NOT NULL auto_increment,
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
   `role_perms_value` text COMMENT '1:All | 2:View | 3:Add | 4:Edit | 5:Delete',
-  PRIMARY KEY (`role_perms_id`)
+  PRIMARY KEY  (`role_perms_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=266 ;
+
+--
+-- Dumping data for table `role_perms`
+--
+
 
 -- --------------------------------------------------------
 
@@ -831,7 +853,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `session_id` varchar(127) NOT NULL,
   `last_activity` int(10) unsigned NOT NULL,
   `data` text NOT NULL,
-  PRIMARY KEY (`session_id`)
+  PRIMARY KEY  (`session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
@@ -839,7 +861,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
-('fa6fefe91c91db34714ddaae4f2f0da5', 1350032978, 'c2Vzc2lvbl9pZHxzOjMyOiJmYTZmZWZlOTFjOTFkYjM0NzE0ZGRhYWU0ZjJmMGRhNSI7dG90YWxfaGl0c3xpOjIzO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy40IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIyLjAuMTIyOS45NCBTYWZhcmkvNTM3LjQiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzUwMDMyOTc1O3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoxMToiYmJzL3BpZC8xNjUiO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9c2Vzc19oaXNfYWRtaW58YToyOntzOjQ6ImJhY2siO3M6MTM6ImFkbWluX2FjY291bnQiO3M6NzoiY3VycmVudCI7czoxMjoiYWRtaW5fY29uZmlnIjt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO30=');
+('fa6fefe91c91db34714ddaae4f2f0da5', 1350032978, 'c2Vzc2lvbl9pZHxzOjMyOiJmYTZmZWZlOTFjOTFkYjM0NzE0ZGRhYWU0ZjJmMGRhNSI7dG90YWxfaGl0c3xpOjIzO19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy40IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIyLjAuMTIyOS45NCBTYWZhcmkvNTM3LjQiO2lwX2FkZHJlc3N8czo5OiIxMjcuMC4wLjEiO2xhc3RfYWN0aXZpdHl8aToxMzUwMDMyOTc1O3Nlc3NfaGlzX2NsaWVudHxhOjI6e3M6NDoiYmFjayI7czoxMToiYmJzL3BpZC8xNjUiO3M6NzoiY3VycmVudCI7czo0OiJob21lIjt9c2Vzc19oaXNfYWRtaW58YToyOntzOjQ6ImJhY2siO3M6MTM6ImFkbWluX2FjY291bnQiO3M6NzoiY3VycmVudCI7czoxMjoiYWRtaW5fY29uZmlnIjt9c2Vzc19hZG1pbl9sYW5nfHM6MToiMSI7c2Vzc19yb2xlfE47c2Vzc19hZG1pbnxhOjU6e3M6MjoiaWQiO3M6MToiMSI7czo1OiJsZXZlbCI7czoxOiIxIjtzOjg6InVzZXJuYW1lIjtzOjEwOiJzdXBlcmFkbWluIjtzOjU6ImVtYWlsIjtzOjIwOiJsZW9AdGVjaGtub3dsZWRnZS52biI7czo0OiJyb2xlIjtzOjE6IjAiO30='),
+('5e0ca835b9c18e380cb336188ce4368a', 1350363437, 'c2Vzc2lvbl9pZHxzOjMyOiI1ZTBjYTgzNWI5YzE4ZTM4MGNiMzM2MTg4Y2U0MzY4YSI7dG90YWxfaGl0c3xpOjU5O19rZl9mbGFzaF98YTowOnt9dXNlcl9hZ2VudHxzOjk5OiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjEpIEFwcGxlV2ViS2l0LzUzNy40IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzIyLjAuMTIyOS45NCBTYWZhcmkvNTM3LjQiO2lwX2FkZHJlc3N8czoxMToiMS41NC4yMzcuMzAiO2xhc3RfYWN0aXZpdHl8aToxMzUwMzYzNDM3O3Nlc3NfaGlzX2FkbWlufGE6Mjp7czo0OiJiYWNrIjtzOjE1OiJhZG1pbl9iYWNrdXBfZGIiO3M6NzoiY3VycmVudCI7czoxNzoiYWRtaW5fYmFja3VwX2ZpbGUiO31zZXNzX2FkbWluX2xhbmd8czoxOiIxIjtzZXNzX3JvbGV8TjtzZXNzX2FkbWlufGE6NTp7czoyOiJpZCI7czoxOiIxIjtzOjU6ImxldmVsIjtzOjE6IjEiO3M6ODoidXNlcm5hbWUiO3M6MTA6InN1cGVyYWRtaW4iO3M6NToiZW1haWwiO3M6MjA6Imxlb0B0ZWNoa25vd2xlZGdlLnZuIjtzOjQ6InJvbGUiO3M6MToiMCI7fQ==');
 
 -- --------------------------------------------------------
 
@@ -848,7 +871,7 @@ INSERT INTO `sessions` (`session_id`, `last_activity`, `data`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `site` (
-  `site_id` tinyint(2) NOT NULL AUTO_INCREMENT,
+  `site_id` tinyint(2) NOT NULL auto_increment,
   `site_name` varchar(255) NOT NULL,
   `site_address` varchar(255) NOT NULL,
   `site_city` varchar(255) NOT NULL,
@@ -858,18 +881,18 @@ CREATE TABLE IF NOT EXISTS `site` (
   `site_logo_width` int(5) NOT NULL,
   `site_logo_height` int(5) NOT NULL,
   `site_phone` varchar(255) NOT NULL,
-  `site_fax` varchar(255) DEFAULT NULL,
-  `site_slogan` varchar(255) DEFAULT NULL,
-  `site_email` varchar(255) DEFAULT NULL,
-  `site_title` varchar(255) DEFAULT NULL,
-  `site_keyword` varchar(255) DEFAULT NULL,
+  `site_fax` varchar(255) default NULL,
+  `site_slogan` varchar(255) default NULL,
+  `site_email` varchar(255) default NULL,
+  `site_title` varchar(255) default NULL,
+  `site_keyword` varchar(255) default NULL,
   `site_description` text,
   `site_contact_name` text,
   `site_facebook` text,
   `site_twitter` text,
   `site_youtube` text,
   `site_linkedin` text,
-  PRIMARY KEY (`site_id`)
+  PRIMARY KEY  (`site_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
 
 --
@@ -886,13 +909,13 @@ INSERT INTO `site` (`site_id`, `site_name`, `site_address`, `site_city`, `site_s
 --
 
 CREATE TABLE IF NOT EXISTS `support` (
-  `support_id` int(3) NOT NULL AUTO_INCREMENT,
-  `support_name` varchar(255) DEFAULT NULL,
-  `support_nick` varchar(255) DEFAULT NULL,
-  `support_type` tinyint(2) DEFAULT '1' COMMENT '1:yahoo, 2:skype, 3:hotline',
-  `support_sort_order` int(11) DEFAULT NULL,
-  `support_status` tinyint(2) DEFAULT NULL,
-  PRIMARY KEY (`support_id`)
+  `support_id` int(3) NOT NULL auto_increment,
+  `support_name` varchar(255) default NULL,
+  `support_nick` varchar(255) default NULL,
+  `support_type` tinyint(2) default '1' COMMENT '1:yahoo, 2:skype, 3:hotline',
+  `support_sort_order` int(11) default NULL,
+  `support_status` tinyint(2) default NULL,
+  PRIMARY KEY  (`support_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=11 ;
 
 --
@@ -909,12 +932,12 @@ INSERT INTO `support` (`support_id`, `support_name`, `support_nick`, `support_ty
 --
 
 CREATE TABLE IF NOT EXISTS `templates` (
-  `templates_id` int(11) NOT NULL AUTO_INCREMENT,
+  `templates_id` int(11) NOT NULL auto_increment,
   `templates_name` varchar(255) NOT NULL,
   `templates_dir` text NOT NULL,
   `templates_order` int(11) NOT NULL,
   `templates_status` tinyint(5) NOT NULL,
-  PRIMARY KEY (`templates_id`)
+  PRIMARY KEY  (`templates_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
 
 --
@@ -931,12 +954,12 @@ INSERT INTO `templates` (`templates_id`, `templates_name`, `templates_dir`, `tem
 --
 
 CREATE TABLE IF NOT EXISTS `themes` (
-  `themes_id` int(11) NOT NULL AUTO_INCREMENT,
-  `themes_name` varchar(255) DEFAULT NULL,
-  `themes_dir` varchar(255) DEFAULT NULL,
-  `themes_sort_order` int(11) DEFAULT NULL,
-  `themes_status` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`themes_id`)
+  `themes_id` int(11) NOT NULL auto_increment,
+  `themes_name` varchar(255) default NULL,
+  `themes_dir` varchar(255) default NULL,
+  `themes_sort_order` int(11) default NULL,
+  `themes_status` tinyint(4) default NULL,
+  PRIMARY KEY  (`themes_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
@@ -962,15 +985,15 @@ INSERT INTO `themes` (`themes_id`, `themes_name`, `themes_dir`, `themes_sort_ord
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL auto_increment,
   `user_name` varchar(200) NOT NULL,
   `user_pass` text NOT NULL,
   `user_email` text NOT NULL,
   `user_level` tinyint(5) NOT NULL COMMENT '1 : super admin | 2 : admin | 3 : staff | 4 : registered',
   `user_role` text,
   `user_status` tinyint(5) NOT NULL,
-  `user_reg_date` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  `user_reg_date` int(11) default NULL,
+  PRIMARY KEY  (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=28 ;
 
 --
@@ -988,12 +1011,12 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_pass`, `user_email`, `user_lev
 --
 
 CREATE TABLE IF NOT EXISTS `version` (
-  `version_id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `version_id` tinyint(1) NOT NULL auto_increment,
   `app_name` varchar(200) NOT NULL,
   `url_server_update` varchar(50) NOT NULL,
   `xml_list_file` varchar(200) NOT NULL,
   `cur_version` varchar(20) NOT NULL,
-  PRIMARY KEY (`version_id`)
+  PRIMARY KEY  (`version_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
 
 --
@@ -1002,7 +1025,3 @@ CREATE TABLE IF NOT EXISTS `version` (
 
 INSERT INTO `version` (`version_id`, `app_name`, `url_server_update`, `xml_list_file`, `cur_version`) VALUES
 (1, 'mch', 'http://project.tikay.net/update/', 'list_versions.xml', '2011b');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
