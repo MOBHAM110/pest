@@ -9,7 +9,9 @@ class Admin_backup_db_Controller extends Template_Controller {
 	public $error ;
 	public $file ;
 	public $upload_dir;
+    public $db_debug = FALSE;
 	public $database;
+    public $data_cache = array();
     
 	function __construct()
 	{
@@ -76,7 +78,7 @@ class Admin_backup_db_Controller extends Template_Controller {
 				{ 
 					$this->session->set_flash('error_msg',Kohana::lang('backup_restore_lang.lbl_file').' '.$uploaded_filename.' '.Kohana::lang('backup_restore_lang.error_file_exist'));
 				}
-				else if (!preg_match("/(\.(sql|zip|csv))$/i",$uploaded_filename))
+				else if (!preg_match("/(\.(sql|zip|csv|gz))$/i",$uploaded_filename))
 				{ 
 					$this->session->set_flash('error_msg',Kohana::lang('backup_restore_lang.valid_file_type'));
 				}
@@ -151,7 +153,7 @@ class Admin_backup_db_Controller extends Template_Controller {
 		{
             $line = trim($line);
             
-            if(!ereg('^--', $line))
+            if(!preg_match('/^--/', $line))
                 $scriptfile.=" ".$line;
 		}
 		
@@ -199,7 +201,7 @@ class Admin_backup_db_Controller extends Template_Controller {
 	{
 		if ($id)
 		{
-            if (preg_match("/(\.(sql|zip|csv))$/i",$id) && @unlink($this->upload_dir.basename($upload_dir.$id)))
+            if (preg_match("/(\.(sql|zip|csv|gz))$/i",$id) && @unlink($this->upload_dir.basename($upload_dir.$id)))
                 $this->session->set_flash('success_msg',''.$id.' was removed successfully');
             else
                 $this->session->set_flash('error_msg','Can not remove "'.$id.'"');
@@ -211,12 +213,17 @@ class Admin_backup_db_Controller extends Template_Controller {
     {		
 		 $this->template->content = new View('admin_backup_db/frm');
 	}
+    
+    
 	function backupsm()
     {	
         $this->template->content = new View('admin_backup_db/frm');
         //$db = 'yesnotebook';
-        $this->backup_tables();
-        $this->template->success_msg = Kohana::lang('backup_restore_lang.msg_backup_successfully');
+        //$this->backup_tables();
+        if($this->backup_Database())
+            $this->template->success_msg = Kohana::lang('backup_restore_lang.msg_backup_successfully');
+        else 
+            $this->template->error_msg = Kohana::lang('backup_restore_lang.msg_backup_error');
         $this->template->content->mr =  $this->mr;
         $this->_get_submit();
 	}
@@ -260,7 +267,7 @@ class Admin_backup_db_Controller extends Template_Controller {
 						$row[$j] = addslashes($row[$j]);
                 		$row[$j] =str_replace("",'',$row[$j]);
 						$row[$j] = str_replace(';',',',$row[$j]);
-						$row[$j] = ereg_replace("\n","\\n",$row[$j]);
+						$row[$j] = preg_replace("/\n/","\\n",$row[$j]);
 				        if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '" ""'; } 
                 		if ($j<($num_fields-1)) { $return.= ','; } 
                 	}
@@ -269,7 +276,7 @@ class Admin_backup_db_Controller extends Template_Controller {
 			 }
 			 $return.="\n\n\n";
 		}
-		$this->mr['file'] = $dbname.'-'.date("m-d-Y").'.zip'; 
+		$this->mr['file'] = $dbname.'-'.date("m-d-Y").'.gz'; 
 		//echo $return;die();	 
 		$handle = fopen($this->upload_dir.$dbname.'-'.date("m-d-Y").'.sql','w+');
 		fwrite($handle,$return);
@@ -286,6 +293,138 @@ class Admin_backup_db_Controller extends Template_Controller {
 		@unlink($this->upload_dir.basename($file));		
 	}
 	
+    
+    // CLEAN QUERIES
+    function clean($str) {
+        if(@isset($str)){
+            $str = @trim($str);
+            if(get_magic_quotes_gpc()) {
+                $str = stripslashes($str);
+            }
+            return mysql_real_escape_string($str);
+        }
+        else{
+            return 'NULL';
+        }
+    }
+
+    // DATABASE BACKUP CREATING FUNCTION
+    function backup_Database($tables = '*')
+    {
+        if($tables == '*')
+        {
+            $tables = array();
+            $DbName = 'Tables_in_'.$this->database;
+            $result = $this->db->query('SHOW TABLES WHERE Tables_in_'.$this->database.' != "sessions"');
+            //$result = $this->db->query('SHOW TABLES');
+            $list = $result->as_array();
+            for($i=0; $i<count($list); $i++)
+            {
+				$tables[] =  $list[$i]->{$DbName};
+				
+            }
+        }
+        else
+        {
+            $tables = is_array($tables) ? $tables : explode(',',$tables);
+        }
+        
+//        $return = 'SET FOREIGN_KEY_CHECKS=0;' . "\r\n";
+//        $return.= 'SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";' . "\r\n";
+//        $return.= 'SET AUTOCOMMIT=0;' . "\r\n";
+//        $return.= 'START TRANSACTION;' . "\r\n";
+
+        $data = '';
+        foreach($tables as $table)
+        {
+            $result = mysql_query('SELECT * FROM '.$table) or die(mysql_error());
+            $num_fields = mysql_num_fields($result) or die(mysql_error());
+
+            $data.= 'DROP TABLE IF EXISTS '.$table.';';
+            $row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
+            $data.= "\n\n".$row2[1].";\n\n";
+
+            for ($i = 0; $i<$num_fields; $i++) 
+            {
+                while($row = mysql_fetch_row($result))
+                {
+                    $data.= "INSERT INTO `".$table."` VALUES(";
+                    for($x=0; $x<$num_fields; $x++) 
+                    {
+                        $row[$x] = addslashes($row[$x]);
+                        //$row[$x] = $this->clean($row[$x]);// CLEAN QUERIES
+                        if (isset($row[$x])) { 
+                        $data.= "'".$row[$x]."'" ; 
+                        } else { 
+                        $data.= "''"; 
+                        }
+
+                        if ($x<($num_fields-1)) { 
+                        $data.= ","; 
+                        }
+                    }  
+                    $data.= ");\n";
+                } 
+            } 
+
+        $data.="\n\n\n";
+        }  // end of the foreach*/
+        $this->mr['file'] = $this->database.'_'.date('m-d-Y_H-i').'.sql.gz'; 
+        
+//        $return .= 'SET FOREIGN_KEY_CHECKS=1;' . "\r\n";
+//        $return .= 'COMMIT;';
+
+        /*/SAVE THE BACKUP AS SQL FILE
+        $handle = fopen($this->upload_dir.$DbName.'-DB-'.date('m-d-Y-m').'.sql','w+');
+        fwrite($handle,$data);
+        fclose($handle);
+        //*/
+        //*/
+        $gzdata = gzencode($data, 9);
+        $handle = fopen($this->upload_dir.$this->database.'_'.date('m-d-Y_H-i').'.sql.gz','w+');
+        fwrite($handle, $gzdata);
+        fclose($handle);
+
+        if($data)
+            echo 'ok';
+        else
+            echo 'error';
+    }  // end of the function
+    
+    
+    function restore($db)
+	{		 
+        error_reporting(E_ALL ^ E_NOTICE);
+
+        @include_once('phpMyImporterClass.php');
+
+        $con = Kohana::config('database.default.connection');
+        $dbhost = $con['host'];
+        $dbuser = $con['user'];
+        $dbpass = $con['pass'];
+        $dbname = $con['database'];
+
+        $filename  = $this->upload_dir.$db;
+        $type = explode('.',$filename);
+        $type = $type[count($type)-1]; 
+        $compress  = ($type=='sql')?false:true;; 
+        
+        $connection = @mysql_connect($dbhost,$dbuser,$dbpass);
+        
+        $dump = new phpMyImporter($dbname,$connection,$filename,$compress);
+
+        $dump->utf8 = true; 
+
+    	if(!$dump->doImport())
+            $this->session->set_flash('error_msg',"Import database Error");
+		else
+		  	$this->session->set_flash('success_msg',"Import database Success");
+		
+		@unlink($this->upload_dir.basename($fn));
+		url::redirect('admin_backup_db');
+        
+		die();
+	}
 
 }
 ?>

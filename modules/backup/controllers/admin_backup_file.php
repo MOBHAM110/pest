@@ -4,6 +4,7 @@ class Admin_backup_file_Controller extends Template_Controller {
 	public $search;
 	public $template = 'admin/index';
 	public $backups='backups/';
+    public $root = './';
     public function __construct()
     {
         parent::__construct();
@@ -33,30 +34,38 @@ class Admin_backup_file_Controller extends Template_Controller {
         $this->show_list();
     }
 	public function addFolderToZip($dir, $zipArchive){
-    if (is_dir($dir)) {
-			if ($dh = opendir($dir)) {
-	
-				//Add the directory
-				$zipArchive->addEmptyDir($dir);
-			   
-				// Loop through all the files
-				while (($file = readdir($dh)) !== false) {
-			   
-					//If it's a folder, run the function again!
-					if(!is_file($dir . $file)){
-						// Skip parent and root directories
-						if( ($file !== ".") && ($file !== "..")){
-							$this->addFolderToZip($dir . $file . "/", $zipArchive);
-						}
-					   
-					}else{
-						// Add the files
-						$zipArchive->addFile($dir . $file);
-					   
-					}
-				}
-			}
-		}
+        if (is_dir($dir)) {
+            if ($dh = opendir($dir)) {
+//                var_dump(realpath($dir));
+//                var_dump(realpath($this->backups));
+//                var_dump(realpath($dir) != realpath($this->backups));
+//                echo '<br>-------------------------------<br>';
+                if(realpath($dir) != realpath($this->backups)){
+                    //Add the 
+                    if($dir != './'){
+                        $dir = str_replace('./', '', $dir);
+                        $zipArchive->addEmptyDir($dir);
+                    }
+
+                        // Loop through all the files
+                        while (($file = readdir($dh)) !== false) {
+                                
+                                //If it's a folder, run the function again!
+                                if(!is_file($dir . $file)){
+                                    // Skip parent and root directories
+                                    if( ($file !== ".") && ($file !== "..")){
+                                        $this->addFolderToZip($dir . $file . "/", $zipArchive);
+                                    }
+
+                                }else{
+                                    // Add the files
+                                    $zipArchive->addFile($dir . $file);
+
+                                }
+                        }
+                }
+            }
+        }
 	}
     public function backup()
 	{
@@ -65,11 +74,12 @@ class Admin_backup_file_Controller extends Template_Controller {
 		$file = 'Backup_'.date('m_d_Y_h_i_s').'.zip';
 		$filename = $this->backups.$file;
 		$zipArchive->open($filename, ZipArchive::CREATE);
-		$dir = 'uploads/';
-		$this->addFolderToZip($dir,$zipArchive);
+		$dir = './';
+		$this->addFolderToZip($dir,$zipArchive); 
 		$this->session->set_flash('success_msg',''.$file.' was backup successfully');
 		$filenam = explode('.',$file);
-		url::redirect('admin_backup_file/complete/'.$filenam[0]);
+		url::redirect('admin_backup_file/show_list/');
+		//url::redirect('admin_backup_file/complete/'.$filenam[0]);
 		
 		 
 	}
@@ -80,6 +90,8 @@ class Admin_backup_file_Controller extends Template_Controller {
 		$this->template->content->filename = $filename;
 		$this->_get_submit();
 	}
+    
+    
  	public function show_list()
 	{
 		$this->template->content = new View('admin_backup_file/list');
@@ -92,6 +104,7 @@ class Admin_backup_file_Controller extends Template_Controller {
 					$arrayFile[] = $dirfile;
 				}
 				  $dirhead=false;
+                  sort($arrayFile);
 				  $this->template->content->arrayFile=array_reverse($arrayFile);
 			}
 		}
@@ -101,11 +114,12 @@ class Admin_backup_file_Controller extends Template_Controller {
   {
 		
 			$zipfile = DOCROOT.$this->backups.$file.'.zip';
-			$path=DOCROOT;
+			//$path=DOCROOT;
+			$path=realpath('../');
 			$zip = new ZipArchive();
 			if ($zip->open($zipfile) === TRUE)
 				{
-					if (!$zip->extractTo($path)){
+					if (!$zip->extractTo(@chmod($path,777))){
 			  			$this->session->set_flash('success_msg',''.$file.'.zip'.' was restore successfully'); 
 			  		} else{
 			  			

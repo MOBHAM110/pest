@@ -1,9 +1,12 @@
 <form action="<?php echo url::base()?>admin_backup_db/backupsm" method="post">
 <table width="100%" height="40" border="0" cellspacing="0" cellpadding="0" class="title">
 	<tr>
-    	<td class="text_tt"><?php echo Kohana::lang('backup_restore_lang.lbl_restore_db')?></td>
+    	<td class="text_tt"><?php echo Kohana::lang('backup_restore_lang.tt_page_db')?></td>
         <td align="right">  
-            <button type="submit" name="btn_submit" class="button save" />
+<!--            <button type="submit" name="btn_submit" class="button save" />
+            <span><?php echo Kohana::lang('backup_restore_lang.btn_backup_db')?></span>
+            </button>-->
+            <button id="btn_backup" type="button" name="btn_submit" class="button save" />
             <span><?php echo Kohana::lang('backup_restore_lang.btn_backup_db')?></span>
             </button>
     	</td>
@@ -35,40 +38,59 @@
     <td width="80" align="center"><?php echo Kohana::lang('backup_restore_lang.lbl_type')?></td>
      <td width="150" align="center"><?php echo Kohana::lang('backup_restore_lang.lbl_action')?></td>
  </tr>
- <?php if(isset($mr['upload_dir'])){?>
- 	
-	<?php  if ($dirhandle = opendir($mr['upload_dir'])) 
-  			{ 
-			$dirhead=false;
-			while (false !== ($dirfile = readdir($dirhandle)))
-    		{ 
-				if ($dirfile != "." && $dirfile != ".." && $dirfile!=basename($_SERVER["SCRIPT_FILENAME"]))
-				{
-				  if (!$dirhead){$dirhead=true;}
-		    ?>
-			<tr class="row2">
-            	<td align="center"><?php echo $dirfile; ?></td>
-                <td align="center"><?php echo  filesize($mr['upload_dir'].$dirfile).'&nbsp;KB'; ?></td>
-                <td align="center"><?php  echo date("m-d-Y H:i:s",filemtime($mr['upload_dir'].$dirfile)) ;?></td>
+ <?php 
+ $ignore = array("cgi-bin", ".", "..", "Thumbs.db");
+ $dirs = array();
+ $files = array();
+ $target = $mr['upload_dir'];
+ if(isset($target)){
+    if($dir = opendir($target)){
+        $dirhead=false;
+            while (($file = readdir($dir)) !== false){
+                if(!in_array($file, $ignore)){
+                    if(is_dir("$target/$file")){
+                        array_push($dirs, "$target/$file");
+                    }
+                    else{
+                        array_push($files, "$target/$file");
+                        if (!$dirhead){$dirhead=true;}
+                    }
+
+                }
+            }
+
+            //Sort
+            sort($dirs);
+            arsort($files);
+            $all = array_unique($files);
+
+            foreach ($all as $value){
+                $filename = explode('/',$value);
+                $filename = $filename[count($filename)-1];
+            ?>
+            <tr class="row2">
+            	<td align="center"><?php echo $filename; ?></td>
+                <td align="center"><?php echo  number_format(filesize($value)).'&nbsp;KB'; ?></td>
+                <td align="center"><?php  echo date("m-d-Y H:i:s",filemtime($value)) ;?></td>
                 <td align="center">
                 	<?php
-						 if (preg_match("/\.sql$/i",$dirfile)) echo 'SQL';
-						 elseif (preg_match("/\.gz$/i",$dirfile))echo "GZip";
-						 elseif (preg_match("/\.zip$/i",$dirfile))echo "Zip";
-						 elseif (preg_match("/\.csv$/i",$dirfile))echo "CSV";
+						 if (preg_match("/\.sql$/i",$filename)) echo 'SQL';
+						 elseif (preg_match("/\.gz$/i",$filename))echo "GZip";
+						 elseif (preg_match("/\.zip$/i",$filename))echo "Zip";
+						 elseif (preg_match("/\.csv$/i",$filename))echo "CSV";
 						 else echo "Misc";
 					 ?>
                 </td>
                
-                	<?php if ((preg_match("/\.zip$/i",$dirfile) && function_exists("gzopen")) || preg_match("/\.sql$/i",$dirfile) || preg_match("/\.csv$/i",$dirfile)){?>
+                	<?php if (((preg_match("/\.zip$/i",$filename) || (preg_match("/\.gz$/i",$filename))) && function_exists("gzopen")) || preg_match("/\.sql$/i",$filename) || preg_match("/\.csv$/i",$filename)){?>
                 <td align="center">
-                		<a href="<?php echo url::base()?>admin_backup_db/import/<?php echo urlencode($dirfile) ?>" onclick="return confirm('<?php echo Kohana::lang('errormsg_lang.msg_confirm_restore')?>')">
+                    <a id="btn_restore" url="<?php echo url::base()?>admin_backup_db/restore/<?php echo urlencode($filename) ?>" >
                              <img src="<?php echo $this->site['base_url']?>themes/admin/pics/icon_restore.png" title="start restore" />
                         </a>&nbsp;
-                        <a href="<?php echo url::base()?>uploads/dbbackup/<?php echo urlencode($dirfile) ?>">
+                        <a href="<?php echo url::base()?>uploads/dbbackup/<?php echo urlencode($filename) ?>">
                              <img src="<?php echo $this->site['base_url']?>themes/admin/pics/icon_download.png" title="Download file" />
                         </a>&nbsp;
-                       <a href="<?php echo url::base()?>admin_backup_db/delete/<?php echo urlencode($dirfile);?>" onclick="return confirm('<?php echo Kohana::lang('errormsg_lang.msg_confirm_del')?>')">
+                       <a href="<?php echo url::base()?>admin_backup_db/delete/<?php echo urlencode($filename);?>" onclick="return confirm('<?php echo Kohana::lang('errormsg_lang.msg_confirm_del')?>')">
                         	<img src="<?php echo $this->site['base_url']?>themes/admin/pics/icon_delete.png" title="<?php echo Kohana::lang('global_lang.btn_delete')?>" /></a>
                
                 </td>
@@ -76,18 +98,56 @@
                 	<td >&nbsp;</td>
                 <?php } ?>
            </tr>
-			<?php	
-				} 
-			}
-			if ($dirhead) echo ('');
+            <?php
+            if ($dirhead) echo ('');
    		    else echo ("<tr class='row2'><td align='center' colspan='6'>No uploaded files found in the working directory</td></tr>");
-			closedir($dirhandle); 
-		   ?>
 			
- 
- <?php }
- 		
- 
- } ?>	
+            }
+        }
+        closedir($dir);
+    }?>	
 </table>
-
+<script type="text/javascript" src="<?php echo url::base()?>plugins/js/jquery/jquery-1.4.2.min.js"></script>
+<link href="<?php echo url::base()?>plugins/js/jquery.tMessage/tTopMessage.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo url::base()?>plugins/js/jquery.tMessage/tTopMessage.js"></script>
+<script>
+    $(function() {
+        $("#btn_restore").live("click",function(){
+            if (confirm("Do you want to restore?")) { 
+                $(document).tTopMessage({load: true, type : 'loading', text : 'restoring...', effect : 'slide'});
+                var url = $(this).attr('url');
+				$.ajax({ 
+					url: url, 
+					//data: { type: frm, id: relativeId }, 
+					//dataType: 'json', 
+					type: 'post', 
+					success: function () { 
+					} 
+				}).done(function(){
+                    $(document).tTopMessage({load: false, type : 'loading', text : 'restoring...', effect : 'slide'});
+                    location.reload();
+                });
+			}
+        });
+        
+        $("#btn_backup").live("click",function(){
+            if (confirm("Do you want to backup?")) { 
+                $(document).tTopMessage({load: true, type : 'loading', text : 'saving...', effect : 'slide'});
+                var url = '<?php echo url::base()?>admin_backup_db/backupsm';
+				$.ajax({ 
+					url: url, 
+					//data: { type: frm, id: relativeId }, 
+					//dataType: 'json', 
+					type: 'post', 
+					success: function () { 
+					} 
+				}).done(function(){
+                    $(document).tTopMessage({load: false, type : 'loading', text : 'saving...', effect : 'slide'});
+                    location.reload();
+                });
+			}
+        });
+        
+        
+    });
+</script>

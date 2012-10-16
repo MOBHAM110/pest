@@ -11,7 +11,7 @@
 </table>
 <table cellspacing="1" cellpadding="5" class="list">
  <tr class="list_header">
- 	<td><input type="checkbox" name="checkbox" value="checkbox" onclick='checkedAll(this.checked);' ></td>
+<!-- 	<td><input type="checkbox" name="checkbox" value="checkbox" onclick='checkedAll(this.checked);' ></td>-->
     <td><?php echo Kohana::lang('backup_restore_lang.lbl_file_name')?></td>
     <td><?php echo Kohana::lang('backup_restore_lang.lbl_size')?></td>
      <td><?php echo Kohana::lang('backup_restore_lang.lbl_date_time')?></td>
@@ -21,6 +21,7 @@
  <?php 
  $dir='backups/';
  $dirhead=false;
+ //var_dump($arrayFile); die();
 	 foreach($arrayFile as $dirfile)	
 	 { 
 			
@@ -33,9 +34,9 @@
 ?>
 			
 			<tr class="row2">
-            	<td align="center"><input name="chk_id[]" type="checkbox" id="chk_id[]" value="<?php echo $filename?>"></td>
+<!--            	<td align="center"><input name="chk_id[]" type="checkbox" id="chk_id[]" value="<?php echo $filename?>"></td>-->
             	<td align="center"><?php echo $dirfile; ?></td>
-                <td align="center"><?php echo  filesize($dir.$dirfile); ?>&nbsp;KB</td>
+                <td align="center"><?php echo  number_format(filesize($dir.$dirfile)/1024); ?>&nbsp;MB</td>
                 <td align="center"><?php  echo date("m-d-Y H:i:s",filemtime($dir.$dirfile)) ;?></td>
                 <td align="center">
                 	<?php
@@ -47,7 +48,7 @@
 					 ?>
                 </td>
                
-                	<?php if ((preg_match("/\.zip$/i",$dirfile) && function_exists("gzopen")) || preg_match("/\.sql$/i",$dirfile) || preg_match("/\.csv$/i",$dirfile)){?>
+                	<?php if (((preg_match("/\.zip$/i",$dirfile) || preg_match("/\.gz$/i",$dirfile) ) && function_exists("gzopen")) || preg_match("/\.sql$/i",$dirfile) || preg_match("/\.csv$/i",$dirfile)){?>
                 <td align="center">
                 		<a href="<?php echo url::base();?>admin_backup_file/restore/<?php echo $filename ?>" onclick="return confirm('<?php echo Kohana::lang('backup_restore_lang.lbl_restore')?>')">
                              <img src="<?php echo $this->site['base_url']?>themes/admin/pics/icon_restore.png" title="Restore" />
@@ -71,7 +72,7 @@
  } ?>	
  
 </table>
-<table class="list_bottom" cellspacing="0" cellpadding="5">
+<!--<table class="list_bottom" cellspacing="0" cellpadding="5">
   <tr>
     <td>
 	<select name="sel_action" id="sel_action">
@@ -83,5 +84,5 @@
     </button>
     </td>
   </tr>
-</table>
+</table>-->
 </form>

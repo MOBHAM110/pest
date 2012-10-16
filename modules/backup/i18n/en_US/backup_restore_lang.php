@@ -5,7 +5,7 @@ $lang ['tt_page']= 'Backup File';
 //Label
 $lang['lbl_title'] = 'Title';
 $lang['lbl_file'] = 'File';
-$lang['lbl_file_name'] = 'File name';
+$lang['lbl_file_name'] = 'File Name';
 $lang['lbl_size'] = 'Size';
 $lang['lbl_date_time'] = 'Date &amp;Time';
 $lang['lbl_type'] = 'Type';
@@ -15,7 +15,7 @@ $lang['lbl_restore_db'] = 'Restore Database';
 $lang['lbl_dump_file'] = 'Dump File';
 
 //Button
-$lang['btn_backup_file'] = 'Backup file';
+$lang['btn_backup_file'] = 'Backup';
 $lang['btn_backup_db'] = 'Backup Database';
 $lang['btn_restore'] = 'Restore';
 $lang['btn_upload'] = 'Upload';
@@ -24,6 +24,7 @@ $lang['btn_download'] = 'Download';
 // Error and Message
 $lang['msg_restore'] = 'Are you sure restore';
 $lang['msg_backup_successfully'] = 'Backup Database successfully. Please click the button download to save file in Hard disk.';
+$lang['msg_backup_error'] = 'Backup Database error. Please check again.';
 $lang['error_file_exist'] = 'Already exist! Delete and upload again';
 $lang['error_create_zip'] = 'Unable to create zip file';
 
