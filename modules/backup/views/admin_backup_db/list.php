@@ -107,9 +107,9 @@
         closedir($dir);
     }?>	
 </table>
-<script type="text/javascript" src="<?php echo url::base()?>plugins/js/jquery/jquery-1.4.2.min.js"></script>
-<link href="<?php echo url::base()?>plugins/js/jquery.tMessage/tTopMessage.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<?php echo url::base()?>plugins/js/jquery.tMessage/tTopMessage.js"></script>
+<script type="text/javascript" src="<?php echo url::base()?>plugins/jquery/jquery-1.4.2.min.js"></script>
+<link href="<?php echo url::base()?>plugins/jquery.tMessage/tTopMessage.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo url::base()?>plugins/jquery.tMessage/tTopMessage.js"></script>
 <script>
     $(function() {
         $("#btn_restore").live("click",function(){
