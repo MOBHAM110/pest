@@ -173,9 +173,9 @@ class Admin_backup_db_Controller extends Template_Controller {
         }
     }
 
-    function delete($id) {
+    public function delete($id='') {
         if ($id) {
-            if (preg_match("/(\.(sql|zip|csv|gz))$/i", $id) && @unlink($this->upload_dir . basename($upload_dir . $id)))
+            if (preg_match("/(\.(sql|zip|csv|gz|sql.gz))$/i", $id) && @unlink($this->upload_dir . basename($this->upload_dir . $id)))
                 $this->session->set_flash('success_msg', '' . $id . ' was removed successfully');
             else
                 $this->session->set_flash('error_msg', 'Can not remove "' . $id . '"');
@@ -184,11 +184,11 @@ class Admin_backup_db_Controller extends Template_Controller {
         }
     }
 
-    function backup() {
+    public function backup() {
         $this->template->content = new View('admin_backup_db/frm');
     }
 
-    function backupsm() {
+    public function backupsm() {
         $this->template->content = new View('admin_backup_db/frm');
         //$db = 'yesnotebook';
         //$this->backup_tables();
