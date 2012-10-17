@@ -719,7 +719,7 @@ class Bbs_Controller extends Template_Controller {
         }
     }
 
-    private function delete_file($bbs_fid = '') {
+    public function delete_file($bbs_fid = '') {
         if ($this->_delele_bbs_file('storage', $bbs_fid)) {
             url::redirect($this->site['history']['current']);
             die();
@@ -728,9 +728,10 @@ class Bbs_Controller extends Template_Controller {
         $this->warning_msg('wrong_pid');
     }
 
-    private function download($id) {
+    public function download($id) {
         if (!$this->_download_bbs_file('storage', $id))
             $this->warning_msg('wrong_pid');
+        die();
     }
 
 }
