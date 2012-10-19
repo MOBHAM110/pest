@@ -10,6 +10,7 @@ class Home_Controller extends Template_Controller {
         $this->template->layout = $this->get_MCH_layout();
 		//$this->init_template_layout(); 
 		$this->rss_model = new Rss_Model();
+		$this->Bbs_model = new Bbs_Model();
 		// Init session 
 		$this->_get_session_msg();		
 		
@@ -195,10 +196,12 @@ class Home_Controller extends Template_Controller {
     		}
     	}		
         
-        $rssNews = $this->rss_model->getRss($this->site['config']['RSS_NEWS_URL']);
+        $rssNews = $this->rss_model->getRss($this->site['config']['RSS_NEWS_URL'],5);
+		//$rssNews = $this->bbs_model->get(FALSE);
 		$mlist['rssnews'] = $rssNews;
-        $rssBlog = $this->rss_model->getRss($this->site['config']['RSS_BLOG_URL']);
+        $rssBlog = $this->rss_model->getRss($this->site['config']['RSS_BLOG_URL'],5);
 		$mlist['rssblog'] = $rssBlog;
+		//var_dump($mlist['rssnews']); die();
 		$this->template->content->mlist = $mlist;
 		//echo Kohana::debug($mlist);die();		
 	}	

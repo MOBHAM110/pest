@@ -87,12 +87,12 @@ class Bbs_Controller extends Template_Controller {
             $blogUrl = Configuration_Model::get_value('RSS_BLOG_URL');
             
             if(!empty($newsUrl)&&$this->page_id==165){
-                $mlist = $this->rss_model->getRss($newsUrl,true);
+                $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE']);
                 if(!empty($mlist)){ foreach($mlist as $id => $value){
                     if($bbs_id == $value['id']) $bbs = $value;
                 }}
             } else if(!empty($blogUrl)&&$this->page_id==166){
-                $mlist = $this->rss_model->getRss($blogUrl,true);
+                $mlist = $this->rss_model->getRss($blogUrl,$this->site['config']['CLIENT_NUM_LINE']);
                 if(!empty($mlist)){ 
                     foreach($mlist as $id => $value){
                     if($bbs_id == $value['id']) $bbs = $value;
@@ -364,11 +364,11 @@ class Bbs_Controller extends Template_Controller {
                 $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
                 $mlist = json_decode($json,true); //$this->print_array($mlist);
                 $total_rows = count($mlist);
-                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } else if($this->page_id==166){
                 $mlist = $this->get_wp();
                 $total_rows = count($mlist);
-                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } else {
                 $this->bbs_model->search($this->search);
                 $this->bbs_model->set_query('where', 'bbs_status', 1);
@@ -378,16 +378,15 @@ class Bbs_Controller extends Template_Controller {
             
         } else if($akc_status == 2 && (!empty($newsUrl)||!empty($blogUrl))){
             if(!empty($newsUrl) && $this->page_id==165){
-                $mlist = $this->rss_model->getRss($newsUrl,true);
-
+                $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE']);
                 $total_rows = count($mlist);
-                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } else if(!empty($blogUrl) && $this->page_id==166){
 
-                $mlist = $this->rss_model->getRss($blogUrl,true);
+                $mlist = $this->rss_model->getRss($blogUrl,$this->site['config']['CLIENT_NUM_LINE']);
 
                 $total_rows = count($mlist);
-                $this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
+                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } 
         } else {
             $this->bbs_model->search($this->search);

@@ -93,7 +93,7 @@ for($i=0;$i<5;$i++) {
 			?>
             <tr>
             <td class="home_bbs_item_M" style="padding-left:5px;">
-            <a href="#" onclick="get_news_rss(<?php echo $i;?>)">
+            <a href="<?php echo url::base()?>bbs-165-1-<?php echo $i?>/<?php echo MyFormat::title_url(@$mlist['rssnews'][$i]['title']);?>" >
 	  		<?php echo isset($mlist['rssnews'][$i]['title'])?$mlist['rssnews'][$i]['title']:'' ?></a>
 			</td></tr>
             <?php }} ?>
@@ -145,7 +145,7 @@ for($i=0;$i<5;$i++) {
 			?>
             <tr>
             <td class="home_bbs_item_M" style="padding-left:5px;">
-            <a href="#" onclick="get_blog(<?php echo $i;?>)">
+            <a href="<?php echo url::base()?>bbs-166-1-<?php echo $i?>/<?php echo MyFormat::title_url(@$mlist['rssblog'][$i]['title']);?>" >
 	  		<?php echo isset($mlist['rssblog'][$i]['title'])?$mlist['rssblog'][$i]['title']:'' ?></a>
 			</td></tr>
             <?php }} ?>
