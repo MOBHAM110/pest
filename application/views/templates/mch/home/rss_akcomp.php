@@ -97,7 +97,7 @@ for($i=0;$i<5;$i++) {
             <script id="newsTmpl" type="text/x-jquery-tmpl">
             <tr>
             <td class="home_bbs_item_M" style="padding-left:5px;">
-            <a href="#" onclick="get_news(${bbs_id})">${bbs_title}</a>
+                <a href="<?php echo url::base()?>bbs-165-1-${bbs_id}/${bbs_title}" >${bbs_title}</a>
             </td></tr>
             </script>
             <tr><td class="home_bbs_item_B"></td></tr>        
@@ -145,7 +145,7 @@ for($i=0;$i<5;$i++) {
 			?>
             <tr>
             <td class="home_bbs_item_M" style="padding-left:5px;">
-            <a href="#" onclick="get_newsWP(<?php echo $i;?>)">
+            <a href="<?php echo url::base()?>bbs-166-1-<?=$i?>/<?=@$arr['rss']['channel']['item'][$i]['title']?>" >
 	  		<?php echo isset($arr['rss']['channel']['item'][$i]['title'])?$arr['rss']['channel']['item'][$i]['title']:'' ?></a>
 			</td></tr>
             <?php }} ?>
