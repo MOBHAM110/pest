@@ -389,6 +389,7 @@ class Bbs_Controller extends Template_Controller {
                 //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } 
         } else {
+			
             $this->bbs_model->search($this->search);
             $this->bbs_model->set_query('where', 'bbs_status', 1);
             $total_rows = count($this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang()));
@@ -402,14 +403,16 @@ class Bbs_Controller extends Template_Controller {
             'style' => 'digg',
         ));
         
-        if($akc_status == 0){
+        if($akc_status == 0 || $this->page_id==163){
             $this->bbs_model->set_limit($this->pagination->items_per_page, $this->pagination->sql_offset);		
             $this->bbs_model->search($this->search);
             $this->bbs_model->set_query('where', 'bbs_status', 1);
             $mlist = $this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang());
         }
+		//var_dump($mlist); die();
         if(count($mlist) > 0)
-        for ($i = 0; $i < count($mlist); $i++) {
+        //for ($i = 0; $i < count($mlist); $i++)
+		foreach ($mlist as $i=>$item){
             if($akc_status < 2){
                 if (empty($mlist[$i]['bbs_date_created']))
                     $mlist[$i]['bbs_date'] = @$mlist[$i]['bbs_date_modified'];
@@ -418,13 +421,13 @@ class Bbs_Controller extends Template_Controller {
                 $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], $mlist[$i]['bbs_date']);
                 $mlist[$i]['bbs_content'] = @$mlist[$i]['bbs_content'];
             } else {
-                $mlist[$i]['bbs_date'] = @$mlist[$i]['pubDate'];
+                $mlist[$i]['bbs_date'] = @$mlist[$i]['bbs_date'];//@$mlist[$i]['pubDate'];
                 $mlist[$i]['bbs_author'] = @$mlist[$i]['author'];
                 $mlist[$i]['bbs_level'] = '0';
                 $mlist[$i]['bbs_id'] = @$mlist[$i]['id'];;
                 $mlist[$i]['bbs_title'] = @$mlist[$i]['title'];;
 
-                $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], strtotime($mlist[$i]['pubDate']));
+                $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], strtotime($mlist[$i]['bbs_date']));
                 $mlist[$i]['bbs_content'] = @$mlist[$i]['content'];
             }
             
@@ -718,7 +721,7 @@ class Bbs_Controller extends Template_Controller {
         }
     }
 
-    public function delete_file($bbs_fid = '') {
+    private function delete_file($bbs_fid = '') {
         if ($this->_delele_bbs_file('storage', $bbs_fid)) {
             url::redirect($this->site['history']['current']);
             die();
@@ -727,10 +730,9 @@ class Bbs_Controller extends Template_Controller {
         $this->warning_msg('wrong_pid');
     }
 
-    public function download($id) {
+    private function download($id) {
         if (!$this->_download_bbs_file('storage', $id))
             $this->warning_msg('wrong_pid');
-        die();
     }
 
 }
