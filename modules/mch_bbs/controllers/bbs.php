@@ -403,7 +403,7 @@ class Bbs_Controller extends Template_Controller {
             'style' => 'digg',
         ));
         
-        if($akc_status == 0 || $this->page_id==163){
+        if($akc_status == 0 || $this->page_id==163){ 
             $this->bbs_model->set_limit($this->pagination->items_per_page, $this->pagination->sql_offset);		
             $this->bbs_model->search($this->search);
             $this->bbs_model->set_query('where', 'bbs_status', 1);
