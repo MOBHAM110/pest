@@ -23,7 +23,7 @@
  *  cache         - Enable or disable query caching
  *	escape        - Enable automatic query builder escaping
  */
-if ($_SERVER["HTTP_HOST"] != "localhost") {
+if ($_SERVER["HTTP_HOST"] == "localhost") {
 $config['default'] = array
 (
 	'benchmark'     => TRUE,
