@@ -23,6 +23,10 @@ $(document).ready(function() {
 				required: true,
 				minlength: 2
 			},
+			txt_site_name: {
+				required: true,
+				minlength: 2
+			},
 			txt_account_email: {
 				required: true,
 				email: true

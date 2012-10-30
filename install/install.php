@@ -126,8 +126,8 @@
                                                         <input type="text" id="txt_site_domain" name="txt_site_domain" value="<?php echo !empty($site_con['site_domain']) ? $site_con['site_domain'] : $def_sd . substr($_SERVER['REQUEST_URI'], 1, strpos($_SERVER['REQUEST_URI'], '/', 1)) ?>" style="width:300px;"/></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Site name</td>
-                                                    <td><input type="text" name="txt_site_name" value="<?php echo !empty($site_con['site_name']) ? $site_con['site_name'] : '' ?>" style="width:300px;"/></td>
+                                                    <td>Site name <font color="red">*</font></td>
+                                                    <td><input type="text" name="txt_site_name" id="txt_site_name" value="<?php echo !empty($site_con['site_name']) ? $site_con['site_name'] : '' ?>" style="width:300px;"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Title</td>
