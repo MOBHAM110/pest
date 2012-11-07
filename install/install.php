@@ -194,7 +194,7 @@ After log in, don't forget to change your password.
                                         </td>
                                     </tr>
                                 <?php } // end if  ?>
-                                	<tr><td align="center"><br /><font style="font-size:smaller">Copyright © 2001-<?php echo date('Y')?> <a href="http://www.tknowledge.com" target="_blank">TechKnowledge</a>, Tikay Corporation. All rights reserved.</font></td></tr>
+                                	<tr><td align="center"><br /><font style="font-size:smaller">Copyright © 1982-<?php echo date('Y')?> <a href="http://www.akcomp.com" target="_blank">A&K Computer Inc</a>. All rights reserved.</font></td></tr>
                             </table>
                             <input type="hidden" name="hd_process" id="hd_process" value="" />
                         </form>
