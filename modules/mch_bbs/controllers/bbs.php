@@ -24,7 +24,7 @@ class Bbs_Controller extends Template_Controller {
 
         /* ---------------------------------- Init properties of Controller ---------------------------------- */
         $this->bbs_model = new Bbs_Model();
-        //require Kohana::find_file('vendor/feed_xml','xml');
+        require Kohana::find_file('vendor/feed_xml','xml');
         $this->mr = array_merge($this->mr, $this->page_model->get_page_lang($this->get_client_lang(), $this->page_id));
     }
 
@@ -297,8 +297,7 @@ class Bbs_Controller extends Template_Controller {
         return $timestamp;
     }
     
-    public function get_wp(){
-        
+    public function get_wp(){        
         $dom = new MyDOMDocument;			
         @$dom->load('http://aandkcomputers.wordpress.com/feed/');
         @$arr = $dom->toArray();
