@@ -26,7 +26,7 @@
 </script>
 </div>
 <?php 
-//require Kohana::find_file('vendor/feed_xml','xml');
+require Kohana::find_file('vendor/feed_xml','xml');
 $dom = new MyDOMDocument;			
 @$dom->load('http://aandkcomputers.wordpress.com/feed/');
 @$arr = $dom->toArray();
