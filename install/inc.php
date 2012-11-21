@@ -54,10 +54,11 @@ if (isset($_POST['hd_process'])) {
                         $config_db_file = preg_replace("/'type'.*,/", "'type' => '" . $db_con['type'] . "',", $config_db_file);
                         $config_db_file = preg_replace("/'user'.*,/", "'user' => '" . $db_con['username'] . "',", $config_db_file);
                         $config_db_file = preg_replace("/'pass'.*,/", "'pass' => '" . $db_con['password'] . "',", $config_db_file);
-                        if (empty($db_con['socket']))
-                            $config_db_file = preg_replace("/'host'.*,/", "'host' => '" . $db_con['host'] . "',", $config_db_file);
-                        else {
-
+                        if (empty($db_con['socket'])){
+                            //$config_db_file = preg_replace("/'host'.*,/", "'host' => '" . $db_con['host'] . "',", $config_db_file);
+                            $config_db_file = preg_replace("/'host'.*,/", "'host' => '',", $config_db_file);
+                            $config_db_file = preg_replace("/'connection'.*,/", "'connection' => 'mysql://" . $db_con['username'] . ':' . $db_con['password'] . '@' . $db_con['host'] . '/' . $db_con['name'] . "',", $config_db_file);
+                        } else {
                             $config_db_file = preg_replace("/'host'.*,/", "'host' => '',", $config_db_file);
                             $config_db_file = preg_replace("/'connection'.*,/", "'connection' => 'mysql://" . $db_con['username'] . ':' . $db_con['password'] . '@' . $db_con['host'] . ':' . $db_con['socket'] . '/' . $db_con['name'] . "',", $config_db_file);
                         }
