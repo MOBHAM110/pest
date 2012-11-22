@@ -2,7 +2,7 @@
 <tr><td class="banner_top_T"></td></tr>
 <tr>
     <td class="banner_top_M">
-    <?php if(!empty($layout['list_top_B_banner']) && $layout['list_top_B_banner'][0]['banner_type'] == 'image'){?>
+    <?php if(!empty($layout['list_top_B_banner'])){?>
     <?php require('banner_top_B_js.php')?>
     <div id="banner_top_M">
     <?php foreach ($layout['list_top_B_banner'] as $banner) { ?>
