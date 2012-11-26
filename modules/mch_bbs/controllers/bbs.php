@@ -20,8 +20,6 @@ class Bbs_Controller extends Template_Controller {
             );
         $this->rss_model = new Rss_Model();
         $this->_get_session_msg();
-        /* --------------------------------------------------------------------------------------------------- */
-
         /* ---------------------------------- Init properties of Controller ---------------------------------- */
         $this->bbs_model = new Bbs_Model();
         require Kohana::find_file('vendor/feed_xml','xml');
@@ -66,7 +64,8 @@ class Bbs_Controller extends Template_Controller {
             $bbs = $this->bbs_model->get(TRUE, $this->page_id, $bbs_id, $this->get_client_lang());
             
             if($this->page_id==165){
-                $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
+                $num = $this->site['config']['CLIENT_NUM_LINE'];
+                $json = $this->curl_download('http://akcomp.com/home/get_news_page/'.$num); 
                 $mlist = json_decode($json,true); //$this->print_array($mlist);
                 if(!empty($mlist)){ foreach($mlist as $id => $value){
                     if($bbs_id == $value['bbs_id']) $bbs = $value;
@@ -311,18 +310,19 @@ class Bbs_Controller extends Template_Controller {
         }
         $mlist = array();
         if(isset($arr) && !empty($arr)){ //$this->print_array($arr);
-        for($i=0;$i<10;$i++) {
-            $a = array(
-                'bbs_id' => $i,
-                'bbs_author' => $arr['rss']['channel']['item'][$i]['dc:creator'],
-                'bbs_title' => $arr['rss']['channel']['item'][$i]['title'],
-                'bbs_content' => $arr['rss']['channel']['item'][$i]['content:encoded'],
-                'bbs_date_modified' => $this->rsstotime($arr['rss']['channel']['item'][$i]['pubDate']),
-                'bbs_link' => $arr['rss']['channel']['item'][$i]['link'],
-                'bbs_level' => 0,
-            );
-            $mlist[] = $a;
-        }
+            $num = $this->site['config']['CLIENT_NUM_LINE'];
+            for($i=0;$i<$num;$i++) {
+                $a = array(
+                    'bbs_id' => $i,
+                    'bbs_author' => $arr['rss']['channel']['item'][$i]['dc:creator'],
+                    'bbs_title' => $arr['rss']['channel']['item'][$i]['title'],
+                    'bbs_content' => $arr['rss']['channel']['item'][$i]['content:encoded'],
+                    'bbs_date_modified' => $this->rsstotime($arr['rss']['channel']['item'][$i]['pubDate']),
+                    'bbs_link' => $arr['rss']['channel']['item'][$i]['link'],
+                    'bbs_level' => 0,
+                );
+                $mlist[] = $a;
+            }
         }
         return $mlist;
     }
@@ -360,35 +360,27 @@ class Bbs_Controller extends Template_Controller {
         
         if($akc_status == 1){
             if($this->page_id==165){
-                $json = $this->curl_download('http://akcomp.com/home/get_news_page'); 
+                $num = $this->site['config']['CLIENT_NUM_LINE'];
+                $json = $this->curl_download('http://akcomp.com/home/get_news_page/'.$num); 
                 $mlist = json_decode($json,true); //$this->print_array($mlist);
                 $total_rows = count($mlist);
-                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } else if($this->page_id==166){
                 $mlist = $this->get_wp();
                 $total_rows = count($mlist);
-                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } else {
                 $this->bbs_model->search($this->search);
                 $this->bbs_model->set_query('where', 'bbs_status', 1);
                 $total_rows = count($this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang()));
-            }
-            
-            
+            }            
         } else if($akc_status == 2 && (!empty($newsUrl)||!empty($blogUrl))){
             if(!empty($newsUrl) && $this->page_id==165){
                 $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE']);
                 $total_rows = count($mlist);
-                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } else if(!empty($blogUrl) && $this->page_id==166){
-
                 $mlist = $this->rss_model->getRss($blogUrl,$this->site['config']['CLIENT_NUM_LINE']);
-
                 $total_rows = count($mlist);
-                //$this->site['config']['CLIENT_NUM_LINE'] = $total_rows;
             } 
-        } else {
-			
+        } else {			
             $this->bbs_model->search($this->search);
             $this->bbs_model->set_query('where', 'bbs_status', 1);
             $total_rows = count($this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang()));
@@ -408,10 +400,8 @@ class Bbs_Controller extends Template_Controller {
             $this->bbs_model->set_query('where', 'bbs_status', 1);
             $mlist = $this->bbs_model->get(TRUE, $this->page_id, '', $this->get_client_lang());
         }
-		//var_dump($mlist); die();
         if(count($mlist) > 0)
-        //for ($i = 0; $i < count($mlist); $i++)
-		foreach ($mlist as $i=>$item){
+        foreach ($mlist as $i=>$item){
             if($akc_status < 2){
                 if (empty($mlist[$i]['bbs_date_created']))
                     $mlist[$i]['bbs_date'] = @$mlist[$i]['bbs_date_modified'];
@@ -428,8 +418,7 @@ class Bbs_Controller extends Template_Controller {
 
                 $mlist[$i]['bbs_date'] = date($this->site['config']['FORMAT_SHORT_DATE'], strtotime($mlist[$i]['bbs_date']));
                 $mlist[$i]['bbs_content'] = @$mlist[$i]['content'];
-            }
-            
+            }            
 
             if (!empty($this->search['keyword'])) {
                 switch ($this->search['sel_type']) {
@@ -468,10 +457,6 @@ class Bbs_Controller extends Template_Controller {
         if ($this->session->get('sess_bbs_pass'))
             $this->mr['bbs_password'] = '';
         $this->bbs_model->increase_count(@$this->mr['bbs_id']);
-//        $mlist = $this->bbsInit();
-//        $this->mr = array_merge($this->mr,$mlist);
-//        var_dump($mlist);
-//        var_dump($this->mr); die();
         $this->template->content->mlist = $mlist;
         $this->template->content->mr = $this->mr;
     }
@@ -483,15 +468,12 @@ class Bbs_Controller extends Template_Controller {
         if (!empty($_POST)) {
             $this->search['keyword'] = $txt_keyword;
             $this->search['sel_type'] = $sel_type;
-        }
-        
+        }        
         $this->mr['keyword'] = $this->search['keyword'];
-
         if (!empty($this->search['sel_type'])) {
             $str_tmp = 'type' . $this->search['sel_type'] . '_selected';
             $this->mr[$str_tmp] = 'selected';
         }
-
         $this->_show_list();
     }
 
