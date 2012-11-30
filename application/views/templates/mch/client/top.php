@@ -32,7 +32,7 @@
 <!-- Menu -->
 <script type="text/javascript" src="<?php echo url::base()?>plugins/sf_menu/hoverIntent.js"></script>
 <script type="text/javascript" src="<?php echo url::base()?>plugins/sf_menu/superfish.js"></script>
-<!--<script type="text/javascript"> $(document).ready(function(){ $("ul.sf-menu").superfish({pathClass:  'current'});});</script>-->
+<script type="text/javascript"> $(document).ready(function(){ $("ul.sf-menu").superfish({pathClass:  'current'});});</script>
 <!-- Scroll to top -->
 <script src="<?php echo url::base()?>plugins/jquery.ui.totop/easing.js" type="text/javascript"></script>
 <script src="<?php echo url::base()?>plugins/jquery.ui.totop/jquery.ui.totop.js" type="text/javascript"></script>
