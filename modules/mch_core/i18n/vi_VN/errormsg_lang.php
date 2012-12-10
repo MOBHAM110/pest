@@ -27,6 +27,7 @@ $lang['error_dir_exist'] = 'Tên thư mục đã được sử dụng';
 $lang['error_send_email'] = 'Lỗi gởi email';
 $lang['error_theme_used'] = 'Theme này đã được sử dụng';
 $lang['error_template_used'] = 'Template này đã được sử dụng';
+$lang['error_empty_layout'] = 'Trang đã chọn hiện không có bố cục!';
 
 // Success
 /* Query Database */

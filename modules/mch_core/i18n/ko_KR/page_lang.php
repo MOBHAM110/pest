@@ -22,6 +22,7 @@ $lang['lbl_prev_sibling'] = 'Previous sibling';
 $lang['lbl_first_child'] = 'First child';
 $lang['lbl_last_child'] = 'Last child';
 $lang['lbl_menu_order'] = 'Menu Order';
+$lang['lbl_copy_layout'] = '레이아웃에서 복사';
 
 // Messages
 $lang['msg_no_sel_method'] = 'No "Move" method selected';
@@ -32,6 +33,6 @@ $lang['btn_update'] = '업데이트';
 $lang['btn_new_page'] = '새 페이지 입력';
 $lang['btn_move_to'] = 'Move to';
 $lang['btn_save_menu_order'] = 'Save Menu order';
-
+$lang['btn_apply'] = '신청';
 // Select Option
 ?>

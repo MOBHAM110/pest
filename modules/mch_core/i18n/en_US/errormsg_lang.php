@@ -26,6 +26,7 @@ $lang['error_dir_exist'] = 'Directory name has been exist';
 $lang['error_send_email'] = 'Send mail failure';
 $lang['error_theme_used'] = 'This theme is being used';
 $lang['error_template_used'] = 'This template is being used';
+$lang['error_empty_layout'] = 'Selected page has not layout!';
 $lang['msg_status_change'] = 'The status have been saved.';
 // Success
 /* Query Database */

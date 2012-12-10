@@ -26,7 +26,7 @@ $lang['error_dir_exist'] = 'Directory name has been exist';
 $lang['error_send_email'] = 'Send mail failure';
 $lang['error_theme_used'] = 'This theme is being used';
 $lang['error_template_used'] = 'This template is being used';
-
+$lang['error_empty_layout'] = '선택한 페이지 레이아웃을하지 않았습니다!';
 // Success
 /* Query Database */
 $lang['msg_data_add'] = '데이터가 추가되었습니다.';

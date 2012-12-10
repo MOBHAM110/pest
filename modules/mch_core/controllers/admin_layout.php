@@ -623,5 +623,33 @@ class Admin_layout_Controller extends Template_Controller
 		url::redirect(uri::segment(1).'/footer');
 		die();
 	}
+	
+	public function copy_to(){
+		$chk_id = $this->input->post('chk_id');
+        $dest_pid = $this->input->post('sel_move');
+		if (empty($chk_id) || !is_array($chk_id) || !valid::digit($dest_pid)) {
+            $this->session->set_flash('warning_msg', Kohana::lang('errormsg_lang.error_parameter'));
+            url::redirect('admin_page');
+            die();
+        }
+		if (!$this->pl_model->has_layout($dest_pid)){
+			$this->session->set_flash('warning_msg', Kohana::lang('errormsg_lang.error_empty_layout'));
+            url::redirect('admin_page');
+            die();
+		}
+		
+		foreach ($chk_id as $i => $pid) {
+			if ($this->pl_model->has_layout($pid)){
+				$set = Gpl_Model::get($dest_pid);
+				$set['page_id'] = $pid;
+				$this->pl_model->update($pid, $set);
+			} else {
+				$this->pl_model->create($pid, 'copy', $dest_pid);
+			}
+		}
+		$this->session->set_flash('success_msg', Kohana::lang('errormsg_lang.msg_data_update'));
+		url::redirect('admin_page');
+        die();
+	}
 }
 ?>

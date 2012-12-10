@@ -6,6 +6,13 @@
 <?php if ($mr['view_list'] == 'mptt') { ?>
 $(document).ready(function()  {
   $(".list").treeTable();
+  $("#sel_method_move").change(function(){
+	var val = $(this).val();
+	if(val == 'copy_layout')
+		$("#btn_move span").text('<?php echo Kohana::lang('page_lang.btn_apply') ?>')
+	else
+		$("#btn_move span").text('<?php echo Kohana::lang('page_lang.btn_move_to') ?>')
+  })
 });
 
 function check_method()
@@ -29,7 +36,10 @@ function check_method()
 			}
 			else 
 			{
-				frm.action = frm.action + '/move_to';
+				if(sel_method.value == 'copy_layout')
+					frm.action = '<?php echo url::base()."admin_layout"?>' + '/copy_to';
+				else
+					frm.action = '<?php echo url::base().uri::segment(1)?>' + '/move_to';
 				frm.submit();
 			}
 		}

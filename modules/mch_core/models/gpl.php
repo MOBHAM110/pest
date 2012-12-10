@@ -1,9 +1,11 @@
 <?php
 class Gpl_Model extends Model
 {	
-	public function get()	
+	public function get($page_id = NULL)	
 	{		
-		$this->db->where('page_id', ORM::factory('page_mptt')->__get('root')->page_id);
+		if(empty($page_id))
+			$page_id = ORM::factory('page_mptt')->__get('root')->page_id;
+		$this->db->where('page_id', $page_id);
 		
 		$result = $this->db->get('page_layout')->result_array(false);
 	

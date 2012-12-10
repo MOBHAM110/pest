@@ -22,7 +22,7 @@ $lang['lbl_prev_sibling'] = 'Trang cùng cấp phía trước';
 $lang['lbl_first_child'] = 'Trang con đầu tiên';
 $lang['lbl_last_child'] = 'Trang con cuối cùng';
 $lang['lbl_menu_order'] = 'Sắp xếp Menu';
-
+$lang['lbl_copy_layout'] = 'Sao chép bố cục từ';
 // Messages
 $lang['msg_no_sel_method'] = 'Không di chuyển được';
 $lang['msg_root_sibling'] = 'Không có trang nào là anh em với trang Root';
@@ -32,6 +32,6 @@ $lang['btn_new_page'] = 'Thêm Trang mới';
 $lang['btn_update'] = 'Cập nhật Bố cục Trang';
 $lang['btn_move_to'] = 'Di chuyển';
 $lang['btn_save_menu_order'] = 'Lưu sắp xếp Menu';
-
+$lang['btn_apply'] = 'Áp dụng';
 // Select Option
 ?>

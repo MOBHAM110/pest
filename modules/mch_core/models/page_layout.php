@@ -43,21 +43,31 @@ class Page_Layout_Model extends Model {
             return TRUE;
         return FALSE;
     }
-
-    public function create($page_id, $init = 'global') { // init global or new
-        $set = array();
-        if ($init === 'global') {
-            $set = Gpl_Model::get();
-        }
-
-        $set['page_id'] = $page_id;
-
-        $result = $this->db->insert('page_layout', $set);
-
-        if (count($result) > 0)
-            return TRUE;
-        return FALSE;
-    }
+	
+	public function create($page_id, $init = 'global', $from_id = NULL)	// init global or new or copy(from_id)
+	{
+		$set = array();
+		if ($init === 'global')
+		{
+			$set = Gpl_Model::get();
+		}
+		
+		if ($init === 'copy')
+		{
+			//get from global if from_id NULL
+			if(empty($from_id))
+				$set = Gpl_Model::get();
+			else
+				$set = Gpl_Model::get($from_id);
+		}
+		
+		$set['page_id'] = $page_id;
+		
+		$result = $this->db->insert('page_layout', $set);
+		
+		if (count($result) > 0)	return TRUE;
+		return FALSE;
+	}
 
     public function delete($page_id) {
         if ($page_id != ORM::factory('page_mptt')->__get('root')->page_id) {

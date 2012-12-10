@@ -175,6 +175,7 @@
         <option value="prev_sibling"><?php echo Kohana::lang('page_lang.lbl_prev_sibling')?></option>
         <option value="first_child"><?php echo Kohana::lang('page_lang.lbl_first_child')?></option>
         <option value="last_child"><?php echo Kohana::lang('page_lang.lbl_last_child')?></option>
+        <option value="copy_layout"><?php echo Kohana::lang('page_lang.lbl_copy_layout')?></option>
     </select>
 	<select name="sel_move" id="sel_move">
 		<?php echo $this->show_sel_page()?>

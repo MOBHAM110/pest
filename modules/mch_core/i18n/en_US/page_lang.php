@@ -20,6 +20,7 @@ $lang['lbl_prev_sibling'] = 'Previous sibling';
 $lang['lbl_first_child'] = 'First child';
 $lang['lbl_last_child'] = 'Last child';
 $lang['lbl_menu_order'] = 'Menu Order';
+$lang['lbl_copy_layout'] = 'Copy layout from';
 
 // Messages
 $lang['msg_no_sel_method'] = 'No "Move" method selected';
@@ -30,6 +31,7 @@ $lang['btn_new_page'] = 'Input new Page';
 $lang['btn_update'] = 'Update Page Layout';
 $lang['btn_move_to'] = 'Move to';
 $lang['btn_save_menu_order'] = 'Update Menu order';
+$lang['btn_apply'] = 'Apply';
 
 // Select Option
 ?>
