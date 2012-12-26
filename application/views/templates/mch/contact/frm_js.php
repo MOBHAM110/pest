@@ -1,5 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
+        $("#txt_name").focus();
 	$('#frm').validate({
 		rules: {
 			txt_name: {

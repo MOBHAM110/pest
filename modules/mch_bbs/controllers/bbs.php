@@ -3,6 +3,7 @@
 class Bbs_Controller extends Template_Controller {
 
     public $template;
+    public $page;
 
     public function __construct() {
         parent::__construct();
@@ -24,6 +25,7 @@ class Bbs_Controller extends Template_Controller {
         $this->bbs_model = new Bbs_Model();
         require Kohana::find_file('vendor/feed_xml','xml');
         $this->mr = array_merge($this->mr, $this->page_model->get_page_lang($this->get_client_lang(), $this->page_id));
+        $this->page = $this->uri->segment('page');
     }
 
     private function _get_session_msg() {
@@ -376,9 +378,17 @@ class Bbs_Controller extends Template_Controller {
             if(!empty($newsUrl) && $this->page_id==165){
                 $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE']);
                 $total_rows = count($mlist);
+                if($this->page)
+                    $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE'],$this->page);
+                else
+                    $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE']);
             } else if(!empty($blogUrl) && $this->page_id==166){
                 $mlist = $this->rss_model->getRss($blogUrl,$this->site['config']['CLIENT_NUM_LINE']);
                 $total_rows = count($mlist);
+                if($this->page)
+                    $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE'],$this->page);
+                else
+                    $mlist = $this->rss_model->getRss($newsUrl,$this->site['config']['CLIENT_NUM_LINE']);
             } 
         } else {			
             $this->bbs_model->search($this->search);

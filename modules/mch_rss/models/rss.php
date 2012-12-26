@@ -12,8 +12,8 @@ class Rss_Model extends Model {
             $this->site['config'][$key] = $conf['configuration_value'];
         }
     }
-
-    public function getRss($url = '', $limit = false) {
+    
+    public function getRss($url = '', $limit = false, $page = 1) {
         $rss = array();
         if(empty($url))
             return $rss;
@@ -31,9 +31,12 @@ class Rss_Model extends Model {
         if ($feed->error()) echo $feed->error();
         if($success){
         foreach($feed->get_items() as $key => $item){
-            if (!$limit)
-                if ($key >= $limit)
+            if ($limit){
+                if($key >= $limit*$page)
                     break;
+				if($key < $limit*($page - 1))
+					continue;
+			}
             $temp = array(
                 'id' => $key,
                 'author' => 'Rss',
@@ -45,29 +48,7 @@ class Rss_Model extends Model {
         }
         }
         return $rss;
-        
-        /*$dom = new MyDOMDocument;
-        @$dom->load($url);
-        @$arr = $dom->toArray(); //var_dump(@$arr);
-
-        $rss = array();
-        if (isset($arr['rss']['channel']['item']) && is_array($arr['rss']['channel']['item']))
-            foreach ($arr['rss']['channel']['item'] as $key => &$item) {
-                if (!$limit)
-                    if ($key >= 5)
-                        break;
-                $item['id'] = $key;
-                if(isset($item['content:encoded']))
-                    $item['content'] = @$item['content:encoded'];
-                else if(!isset($item['content']))
-                    $item['content'] = @$item['description'];
-                
-                $rss[] = $item;
-            }
-
-        return $rss;*/
     }
-
 }
 
 ?>
